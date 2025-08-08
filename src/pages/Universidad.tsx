@@ -430,26 +430,177 @@ export default function Universidad() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Expert-Led Workshops Section */}
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Todo lo que Necesitas para Dominar la IA
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900">
+                Aprenda directamente de expertos en IA con <span className="text-purple-600">talleres dirigidos por expertos</span>
               </h2>
-              <p className="text-xl text-muted-foreground">
-                Una experiencia de aprendizaje completa diseñada para profesionales
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-12">
+                Únase a sesiones interactivas semanales en vivo con líderes de la industria que están a la vanguardia de la innovación en IA para obtener orientación práctica sobre la implementación y conocimientos exclusivos.
               </p>
+
+              {/* Company logos */}
+              <div className="flex items-center justify-center space-x-8 mb-16 opacity-60">
+                <div className="text-slate-600 font-bold text-xl">Meta</div>
+                <div className="text-slate-600 font-bold text-xl">KLING AI</div>
+                <div className="text-slate-600 font-bold text-xl">windsurf</div>
+                <div className="text-slate-600 font-bold text-xl">bolt</div>
+                <div className="text-slate-600 font-bold text-xl">Lindy</div>
+                <div className="text-slate-600 font-bold text-xl">Poe</div>
+              </div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-700">{feature}</span>
+            <div className="space-y-6 mb-12">
+              {/* Workshop 1 */}
+              <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
+                <div className="flex items-start gap-6">
+                  <div className="w-32 h-24 bg-slate-800 rounded-lg flex-shrink-0 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm text-slate-500 mb-2">4 de febrero de 2025 • 4:00 p. m., hora del este</div>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900">
+                      Creación y monetización de aplicaciones móviles con Windsurf AI
+                    </h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      Yendo más allá de lo básico, esta sesión avanzada le enseñará cómo crear e implementar aplicaciones móviles robustas utilizando Windsurf y React Native, con implementación práctica de servicios de backend de Supabase e integración de pagos de App Store que puede aplicar de inmediato a sus proyectos.
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-slate-500">
+                      <span>Transmisión en vivo</span>
+                      <span>Más de 100 asistentes</span>
+                      <Button variant="link" className="p-0 text-purple-600 hover:text-purple-700">
+                        Más información →
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </Card>
+
+              {/* Workshop 2 */}
+              <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
+                <div className="flex items-start gap-6">
+                  <div className="w-32 h-24 bg-slate-800 rounded-lg flex-shrink-0 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm text-slate-500 mb-2">30 de agosto de 2024 • 4:00 p. m., hora del este</div>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900">
+                      Creación de agentes de IA con Lindy AI
+                    </h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      Cree agentes de IA autónomos que gestionen flujos de trabajo repetitivos en múltiples aplicaciones, lo que le permitirá delegar procesos completos (no solo tareas individuales) para que pueda centrarse en el trabajo creativo y estratégico que genera valor comercial real.
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-slate-500">
+                      <span>Transmisión en vivo</span>
+                      <span>Más de 100 asistentes</span>
+                      <Button variant="link" className="p-0 text-purple-600 hover:text-purple-700">
+                        Más información →
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Workshop 3 */}
+              <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
+                <div className="flex items-start gap-6">
+                  <div className="w-32 h-24 bg-slate-800 rounded-lg flex-shrink-0 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm text-slate-500 mb-2">31 de enero de 2025 • 4:00 p. m. ET</div>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900">
+                      Cómo automatizar tareas con el operador ChatGPT
+                    </h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      Aprenda a aprovechar el nuevo asistente Operator de OpenAI en ChatGPT para tareas prácticas como enviar formularios, solicitar empleos y pedir artículos. Tras casos prácticos, le explicaremos paso a paso cómo configurar Operator para su uso sin conexión, lo que le brindará mayor privacidad y control total sobre sus datos.
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-slate-500">
+                      <span>Transmisión en vivo</span>
+                      <span>Más de 100 asistentes</span>
+                      <Button variant="link" className="p-0 text-purple-600 hover:text-purple-700">
+                        Más información →
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Workshop 4 */}
+              <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
+                <div className="flex items-start gap-6">
+                  <div className="w-32 h-24 bg-slate-800 rounded-lg flex-shrink-0 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm text-slate-500 mb-2">26 de febrero de 2025 • 4:00 p. m., hora del este</div>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900">
+                      Utilice videos personalizados para ampliar su alcance con Synthesia
+                    </h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      Domine las técnicas para crear mensajes de video personalizados y de alta conversión que se adapten a cientos de clientes potenciales sin sacrificar el toque personal, lo que le ayudará a superar el desorden de la bandeja de entrada y aumentar drásticamente las tasas de respuesta.
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-slate-500">
+                      <span>Transmisión en vivo</span>
+                      <span>Más de 80 asistentes</span>
+                      <Button variant="link" className="p-0 text-purple-600 hover:text-purple-700">
+                        Más información →
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="text-center mb-12">
+              <p className="text-slate-600 mb-4">
+                Todos los talleres incluyen presentaciones, sesiones de preguntas y respuestas y una demostración. Las grabaciones previas se almacenan en la Universidad.
+              </p>
+              <Button variant="link" className="text-slate-600 hover:text-purple-600">
+                Ver todos los talleres →
+              </Button>
+            </div>
+
+            {/* Wouter Teunissen Testimonial */}
+            <div className="max-w-2xl mx-auto mb-12">
+              <Card className="p-8 bg-white shadow-lg">
+                <div className="flex items-center mb-4">
+                  <Quote className="w-8 h-8 text-purple-600 mr-3" />
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                  "El Resumen me abrió los ojos a las posibilidades de la IA. Al principio, solo probé un par de herramientas de IA, pero no las usé en mi trabajo. Tras solo un par de días de aprendizaje, creé un agente de IA que responde a mis correos electrónicos en mi nombre. Un punto de inflexión para mi negocio."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-slate-400 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                    WT
+                  </div>
+                  <div>
+                    <div className="font-semibold text-slate-900">Wouter Teunissen</div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* User Avatars Section */}
+            <div className="text-center">
+              <div className="flex justify-center items-center space-x-4 mb-6">
+                <div className="flex -space-x-2">
+                  <div className="w-10 h-10 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">FS</div>
+                  <div className="w-10 h-10 bg-green-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">JW</div>
+                  <div className="w-10 h-10 bg-purple-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">AM</div>
+                  <div className="w-10 h-10 bg-orange-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">KH</div>
+                  <div className="w-10 h-10 bg-red-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">ML</div>
+                  <div className="w-10 h-10 bg-indigo-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold">BT</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
