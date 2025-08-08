@@ -36,11 +36,15 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MessageItem from "@/components/shared/MessageItem";
+import MessageThread from "@/components/shared/MessageThread";
 
 export default function UniversidadComunidad() {
   const [activeSection, setActiveSection] = useState('community');
   const [activeChannel, setActiveChannel] = useState('general');
   const [newMessage, setNewMessage] = useState('');
+  const [activeThread, setActiveThread] = useState<number | null>(null);
+  const [threadNotifications, setThreadNotifications] = useState<number[]>([]);
   const navigate = useNavigate();
 
   const sidebarItems = [
@@ -195,6 +199,41 @@ export default function UniversidadComunidad() {
     { name: 'Carlos M.', status: 'online' }
   ]);
 
+  // Thread replies data (in real app, this would be fetched based on activeThread)
+  const threadReplies = {
+    3: [
+      {
+        id: 31,
+        user: { name: 'Pedro Dev', avatar: 'PD', role: 'member' },
+        content: 'Me gustaría ver más sobre automatización de emails con IA.',
+        timestamp: '14:45',
+        date: '5 de junio de 2025',
+        reactions: [{ emoji: '👍', count: 2 }],
+        replies: 0
+      }
+    ],
+    5: [
+      {
+        id: 51,
+        user: { name: 'Ana Leads', avatar: 'AL', role: 'premium' },
+        content: 'Yo uso Clay para enriquecimiento de datos. Es increíble para automatizar workflows.',
+        timestamp: '04:25',
+        date: '20 de junio de 2025',
+        reactions: [],
+        replies: 0
+      },
+      {
+        id: 52,
+        user: { name: 'Tech Guru', avatar: 'TG', role: 'top-contributor' },
+        content: 'También recomiendo Apollo.io combinado con Phantombuster para LinkedIn scraping ético.',
+        timestamp: '04:31',
+        date: '20 de junio de 2025',
+        reactions: [{ emoji: '🔥', count: 1 }],
+        replies: 0
+      }
+    ]
+  };
+
   const handleSendMessage = () => {
     if (newMessage.trim()) {
       // Aquí se enviaría el mensaje en una implementación real
@@ -207,6 +246,30 @@ export default function UniversidadComunidad() {
       e.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleThreadClick = (messageId: number) => {
+    setActiveThread(messageId);
+    // Remove notification for this thread
+    setThreadNotifications(prev => prev.filter(id => id !== messageId));
+  };
+
+  const handleCloseThread = () => {
+    setActiveThread(null);
+  };
+
+  const handleSendThreadReply = (content: string) => {
+    // In real app, this would send the reply to the backend
+    console.log('Sending thread reply:', content);
+    // Add notification logic here
+  };
+
+  const getActiveThreadMessage = () => {
+    return messages.find(msg => msg.id === activeThread);
+  };
+
+  const getActiveThreadReplies = () => {
+    return threadReplies[activeThread as keyof typeof threadReplies] || [];
   };
 
   return (
@@ -358,81 +421,12 @@ export default function UniversidadComunidad() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-6">
             {messages.map((message) => (
-              <div key={message.id} className="group">
-                {/* Date separator if needed */}
-                <div className="text-center mb-4">
-                  <span className="bg-neutral-700 px-3 py-1 rounded-full text-xs text-neutral-400">
-                    {message.date}
-                  </span>
-                </div>
-
-                <div className="flex gap-4 hover:bg-neutral-800/50 p-3 rounded-lg transition-colors">
-                  <div className="relative">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold ${
-                      roleConfig[message.user.role]?.color || 'bg-blue-600'
-                    }`}>
-                      {message.user.avatar}
-                    </div>
-                    {roleConfig[message.user.role]?.crown && (
-                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-purple-600 rounded-full flex items-center justify-center">
-                        <Crown className="w-2 h-2 text-white" />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-semibold">{message.user.name}</span>
-                      {roleConfig[message.user.role]?.badge && (
-                        <Badge variant="secondary" className="bg-neutral-600 text-white text-xs">
-                          {roleConfig[message.user.role].badge}
-                        </Badge>
-                      )}
-                      <span className="text-xs text-neutral-400">{message.timestamp}</span>
-                    </div>
-
-                    <div className="text-neutral-200 mb-2 leading-relaxed">
-                      {message.content}
-                    </div>
-
-                    {/* Reactions and Actions */}
-                    <div className="flex items-center gap-4">
-                      {message.reactions.length > 0 && (
-                        <div className="flex gap-1">
-                          {message.reactions.map((reaction, index) => (
-                            <button
-                              key={index}
-                              className="flex items-center gap-1 bg-neutral-700 hover:bg-neutral-600 px-2 py-1 rounded-full text-xs transition-colors"
-                            >
-                              <span>{reaction.emoji}</span>
-                              <span>{reaction.count}</span>
-                            </button>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Hidden actions that appear on hover */}
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
-                        <Button variant="ghost" size="sm" className="text-neutral-400 hover:text-white p-1">
-                          <Smile className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="text-neutral-400 hover:text-white p-1">
-                          <MessageSquare className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="text-neutral-400 hover:text-white p-1">
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-
-                      {message.replies > 0 && (
-                        <button className="text-xs text-purple-400 hover:underline">
-                          {message.replies} respuesta{message.replies !== 1 ? 's' : ''}
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <MessageItem 
+                key={message.id} 
+                message={message} 
+                roleConfig={roleConfig}
+                onThreadClick={handleThreadClick}
+              />
             ))}
           </div>
 
@@ -467,8 +461,19 @@ export default function UniversidadComunidad() {
           </div>
         </div>
 
+        {/* Thread Panel - appears when a thread is active */}
+        {activeThread && (
+          <MessageThread
+            parentMessage={getActiveThreadMessage()!}
+            threadReplies={getActiveThreadReplies()}
+            roleConfig={roleConfig}
+            onClose={handleCloseThread}
+            onSendReply={handleSendThreadReply}
+          />
+        )}
+
         {/* Online Users Sidebar */}
-        <div className="w-64 bg-neutral-800 border-l border-neutral-700 p-4">
+        <div className={`${activeThread ? 'w-48' : 'w-64'} bg-neutral-800 border-l border-neutral-700 p-4 transition-all duration-200`}>
           <h3 className="font-semibold mb-4">Miembros en línea ({onlineUsers.length})</h3>
           <div className="space-y-2">
             {onlineUsers.map((user, index) => (
