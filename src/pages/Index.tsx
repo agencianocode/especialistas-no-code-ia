@@ -66,45 +66,64 @@ export default function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <header className="sticky top-0 z-40 w-full bg-foreground text-background">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <a href="/" className="flex items-center gap-2 font-bold tracking-tight">
+        <div className="container-responsive flex h-16 items-center justify-between">
+          <a href="/" className="flex items-center gap-2 font-bold tracking-tight hover:opacity-80 transition-opacity">
             <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-foreground font-bold text-sm">
               RR
             </div>
             <span className="text-white">The Rundown</span>
           </a>
-          <nav className="hidden lg:flex items-center gap-6 text-sm text-white/90">
-            <a href="/universidad" className="hover:text-white transition-colors">Universidad de IA</a>
-            <a href="/articulos" className="hover:text-white transition-colors">Artículos</a>
-            <a href="/guias" className="hover:text-white transition-colors">Guías</a>
-            <a href="/herramientas" className="hover:text-white transition-colors">Herramientas</a>
-            <a href="/podcast" className="hover:text-white transition-colors">Cursos</a>
-            <a href="/talleres" className="hover:text-white transition-colors">Talleres</a>
-            <a href="#" className="hover:text-white transition-colors">Anunciar</a>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-6 text-sm text-white/90" role="navigation">
+            <a href="/universidad" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Universidad de IA</a>
+            <a href="/articulos" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Artículos</a>
+            <a href="/guias" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Guías</a>
+            <a href="/herramientas" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Herramientas</a>
+            <a href="/podcast" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Cursos</a>
+            <a href="/talleres" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Talleres</a>
+            <a href="#" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Anunciar</a>
           </nav>
+          
+          {/* Mobile Menu Button + Login */}
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-white/30 text-white hover:bg-white/10 transition-all duration-200 hidden md:flex"
+            >
               Inicio de sesión de la Universidad →
             </Button>
+            
+            {/* Mobile menu toggle would go here */}
+            <button 
+              className="lg:hidden text-white hover:text-white/80 transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Abrir menú"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </header>
 
       <main>
-        {/* Hero */}
+        {/* Hero Section - Responsive */}
         <section className="relative overflow-hidden bg-foreground text-background">
-          <div className="container mx-auto grid gap-8 px-4 py-20 md:py-28">
+          <div className="container-responsive grid gap-8 spacing-section">
             <div className="mx-auto max-w-4xl text-center animate-fade-in">
-              <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
+              <h1 className="font-bold tracking-tight text-balance">
                 Aprenda IA en <span className="text-[#c855ff]">5</span>
                 <br />
                 <span className="text-[#c855ff]">minutos</span> al día.
               </h1>
-              <p className="mt-6 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
+              <p className="mt-6 text-responsive text-white/80 max-w-2xl mx-auto text-balance">
                 Obtenga las últimas noticias sobre IA, comprenda por qué es importante y aprenda cómo aplicarla en su trabajo.
               </p>
-              {/* Formulario cápsula */}
-              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex w-full max-w-lg items-center gap-0 rounded-full bg-white p-1 shadow-lg">
+              
+              {/* Responsive Newsletter Form */}
+              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex flex-col sm:flex-row w-full max-w-lg items-center gap-2 sm:gap-0 sm:rounded-full bg-white p-1 shadow-lg">
                 <label htmlFor="email" className="sr-only">Dirección de correo electrónico</label>
                 <Input 
                   id="email" 
@@ -113,40 +132,46 @@ export default function Index() {
                   placeholder="Dirección de correo electrónico" 
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
-                  className="h-12 flex-1 rounded-full border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 px-6" 
+                  className="h-12 flex-1 rounded-lg sm:rounded-full border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 px-6" 
                 />
-                <Button type="submit" size="lg" className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-6">
+                <Button type="submit" size="lg" className="w-full sm:w-auto rounded-lg sm:rounded-full bg-foreground text-background hover:bg-foreground/90 px-6 min-h-[48px]">
                   Suscribir ✈
                 </Button>
               </form>
-              <p className="mt-6 text-sm text-white/70">Únase a más de 1.000.000 de lectores de empresas como:</p>
-              {/* Logo cloud empresas */}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-8 opacity-60">
-                <span className="text-2xl font-bold text-white">Google</span>
-                <span className="text-2xl font-bold text-white">Meta</span>
-                <span className="text-lg font-bold text-white">cisco</span>
-                <span className="text-xl font-bold text-white">HubSpot</span>
-                <span className="text-2xl font-bold text-white">IBM</span>
-                <span className="text-xl font-bold text-white">Microsoft</span>
+              
+              <p className="mt-6 text-sm text-white/70 text-balance">Únase a más de 1.000.000 de lectores de empresas como:</p>
+              
+              {/* Responsive Logo Cloud */}
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-60">
+                <span className="text-lg sm:text-2xl font-bold text-white">Google</span>
+                <span className="text-lg sm:text-2xl font-bold text-white">Meta</span>
+                <span className="text-base sm:text-lg font-bold text-white">cisco</span>
+                <span className="text-lg sm:text-xl font-bold text-white">HubSpot</span>
+                <span className="text-lg sm:text-2xl font-bold text-white">IBM</span>
+                <span className="text-lg sm:text-xl font-bold text-white">Microsoft</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Últimos artículos con tabs y destacado */}
-        <section id="articulos" className="container mx-auto px-4 py-12 md:py-16">
+        {/* Articles Section - Responsive */}
+        <section id="articulos" className="container-responsive spacing-section">
           <SectionHeader title="Últimos artículos" subtitle="Lo más reciente en noticias, guías y análisis." href="/articulos" />
           <Tabs defaultValue="Todos" className="w-full">
-            <TabsList className="flex flex-wrap gap-2 bg-transparent p-0">
+            <TabsList className="flex flex-wrap gap-2 bg-transparent p-0 justify-start sm:justify-center">
               {categories.map((c) => (
-                <TabsTrigger key={c} value={c} className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary rounded-full border bg-muted px-3 py-1.5 text-sm text-muted-foreground">
+                <TabsTrigger 
+                  key={c} 
+                  value={c} 
+                  className="data-[state=active]:bg-primary/10 data-[state=active]:text-primary rounded-full border bg-muted px-3 py-1.5 text-sm text-muted-foreground hover-lift"
+                >
                   {c}
                 </TabsTrigger>
               ))}
             </TabsList>
             {categories.map((c) => (
               <TabsContent key={c} value={c} className="mt-6">
-                <div className="grid gap-6 md:grid-cols-3 md:auto-rows-[1fr]">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[1fr]">
                   <ArticleCard featured title={dummyArticles[0].title} tag={dummyArticles[0].tag} date={dummyArticles[0].date} excerpt={dummyArticles[0].excerpt} image={dummyArticles[0].image} />
                   {dummyArticles.slice(1).map((a, i) => (
                     <ArticleCard key={i} title={a.title} tag={a.tag} date={a.date} image={a.image} />
@@ -157,48 +182,48 @@ export default function Index() {
           </Tabs>
         </section>
 
-        {/* Guías */}
-        <section id="guias" className="container mx-auto px-4 py-12 md:py-16">
+        {/* Guides Section - Responsive */}
+        <section id="guias" className="container-responsive spacing-section">
           <div className="mx-auto max-w-4xl text-center mb-8">
-            <h2 className="text-4xl font-bold mb-6">Guías</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <h2 className="font-bold mb-6 text-balance">Guías</h2>
+            <p className="text-responsive text-muted-foreground leading-relaxed text-balance">
               Recopilamos los principales casos de uso de IA del mundo real entre nuestra audiencia de más de 1 millón de primeros usuarios y creamos guías diarias sobre exactamente cómo puede copiarlos y aplicarlos a su trabajo.
             </p>
           </div>
           
-          {/* Filtros por categorías */}
-          <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
-            <Chip selected>Todo</Chip>
-            <Chip>👨‍💻 Codificación</Chip>
-            <Chip>📈 Marketing</Chip>
-            <Chip>✏️ Creador de contenido</Chip>
-          </div>
-          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
-            <Chip>📚 Educador</Chip>
-            <Chip>💼 Ventas</Chip>
-            <Chip>🎨 Diseño</Chip>
-            <Chip>📊 Análisis de datos</Chip>
-          </div>
-          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
-            <Chip>📋 Gestión de proyectos</Chip>
-            <Chip>🤝 Consultante</Chip>
-            <Chip>💰 Finanzas</Chip>
-            <Chip>🏛️ Gobierno</Chip>
-          </div>
-          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
-            <Chip>🏥 Cuidado de la salud</Chip>
-            <Chip>⚖️ Legal</Chip>
-            <Chip>👥 Reclutamiento de RRHH</Chip>
-          </div>
-          <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-            <Chip>🎓 Alumno</Chip>
-            <Chip>📋 General</Chip>
-            <Chip>🏢 Operaciones comerciales</Chip>
+          {/* Responsive Category Filters */}
+          <div className="mb-8 space-y-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <Chip selected>Todo</Chip>
+              <Chip>👨‍💻 Codificación</Chip>
+              <Chip>📈 Marketing</Chip>
+              <Chip>✏️ Creador de contenido</Chip>
+              <Chip>📚 Educador</Chip>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <Chip>💼 Ventas</Chip>
+              <Chip>🎨 Diseño</Chip>
+              <Chip>📊 Análisis de datos</Chip>
+              <Chip>📋 Gestión de proyectos</Chip>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <Chip>🤝 Consultante</Chip>
+              <Chip>💰 Finanzas</Chip>
+              <Chip>🏛️ Gobierno</Chip>
+              <Chip>🏥 Cuidado de la salud</Chip>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <Chip>⚖️ Legal</Chip>
+              <Chip>👥 Reclutamiento de RRHH</Chip>
+              <Chip>🎓 Alumno</Chip>
+              <Chip>📋 General</Chip>
+              <Chip>🏢 Operaciones comerciales</Chip>
+            </div>
           </div>
 
-          {/* Grid de guías */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+          {/* Responsive Guides Grid */}
+          <div className="grid-responsive gap-6 mb-8">
+            <Card className="overflow-hidden hover-lift transition-shadow hover:shadow-[var(--shadow-elevated)]">
               <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 p-4">
                 <div className="h-full w-full rounded bg-slate-900 flex items-center justify-center">
                   <div className="text-white text-xs">🎬 Video Editor</div>
