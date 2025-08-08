@@ -1,8 +1,9 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network, Quote } from "lucide-react";
+import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network, Quote, Plus, Minus } from "lucide-react";
 import Header from "@/components/shared/Header";
+import { useState } from "react";
 
 export default function Universidad() {
   const ld = {
@@ -606,64 +607,341 @@ export default function Universidad() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20">
+      {/* Community Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Lo que Dicen Nuestros Estudiantes</h2>
-            <p className="text-xl text-muted-foreground">
-              Historias de éxito de profesionales que transformaron sus carreras
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900">
+              Encuentre conexiones valiosas dentro de una <span className="text-purple-600">comunidad de primeros usuarios</span>
+            </h2>
+            <p className="text-lg text-slate-600 mb-16">
+              Aprenda de las lecciones, oportunidades y logros de una comunidad creciente de profesionales que ya están trabajando más rápido e inteligentemente con IA.
             </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
+
+            {/* Blake Moore Testimonial */}
+            <div className="max-w-2xl mx-auto mb-20">
+              <Card className="p-8 bg-white shadow-lg">
                 <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  <Quote className="w-8 h-8 text-purple-600 mr-3" />
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-6">"{testimonial.content}"</p>
+                <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                  "Con descripciones generales y análisis a fondo de todas las áreas de la IA, no hay mejor manera de mantenerse actualizado y al tanto de las mejores maneras de implementar estas nuevas tecnologías en nuestras vidas. Si tienes preguntas específicas o buscas oportunidades para hacer networking, The Rundown es el lugar ideal."
+                </p>
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
-                    {testimonial.avatar}
+                  <div className="w-12 h-12 bg-slate-400 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                    BM
                   </div>
                   <div>
-                    <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.role} en {testimonial.company}
-                    </div>
+                    <div className="font-semibold text-slate-900">Blake Moore</div>
                   </div>
                 </div>
               </Card>
-            ))}
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900">
+              Construya una mejor pila tecnológica con <span className="text-purple-600">beneficios exclusivos</span>
+            </h2>
+            <p className="text-lg text-slate-600 mb-16">
+              Aproveche nuestra amplia red de asociaciones con las principales empresas de inteligencia artificial para acceder a un número cada vez mayor de tarifas con descuento, pruebas extendidas y asignaciones de uso adicionales que valen más de $1000.
+            </p>
+
+            {/* Adriana Carvajal Testimonial */}
+            <div className="max-w-2xl mx-auto">
+              <Card className="p-8 bg-white shadow-lg">
+                <div className="flex items-center mb-4">
+                  <Quote className="w-8 h-8 text-purple-600 mr-3" />
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                  "¡The Rundown me ha sido de gran ayuda para ponerme al día con la IA! Con el boletín, no me pierdo nada nunca más, y con la formación, cada día encuentro nuevas maneras de integrar la IA en mi trabajo, tanto como creador de contenido como empresario."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-slate-400 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                    AC
+                  </div>
+                  <div>
+                    <div className="font-semibold text-slate-900">Adriana Carvajal</div>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Pricing Section */}
       <section className="py-20 bg-slate-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Comienza tu Transformación en IA Hoy
-          </h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Únete a miles de profesionales que ya están aprovechando el poder de la IA en sus carreras
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
-              Comenzar Gratis
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
-              Hablar con un Asesor
-            </Button>
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-10 h-10 bg-white rounded flex items-center justify-center mr-3">
+                  <span className="text-slate-900 font-bold">TR</span>
+                </div>
+                <span className="text-white text-xl font-semibold">
+                  The Rundown <span className="text-purple-400">University</span>
+                </span>
+              </div>
+              <p className="text-slate-300 text-lg max-w-3xl mx-auto">
+                Acceda a certificaciones específicas de la industria, cientos de guías paso a paso y talleres de expertos en vivo para acelerar su carrera.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {/* Plan Completo */}
+              <Card className="p-8 bg-slate-800 text-white border-slate-700 relative">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Plan completo</h3>
+                  <div className="text-4xl font-bold mb-1">$999</div>
+                  <div className="text-slate-400 text-sm">/año</div>
+                  <p className="text-slate-400 text-sm mt-2">Se renueva anualmente. Puedes cancelar en cualquier momento.</p>
+                </div>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 mb-6">
+                  Suscríbete ahora
+                </Button>
+                <div className="space-y-3">
+                  <p className="font-semibold mb-3">Desbloquear el acceso a:</p>
+                  <div className="text-sm space-y-2">
+                    <p>• Más de 300 casos de uso de IA</p>
+                    <p>• Todos los cursos de IA certificados</p>
+                    <p>• Guías diarias paso a paso</p>
+                    <p>• Talleres semanales dirigidos por expertos (en vivo y a pedido)</p>
+                    <p>• Apoyo personalizado de nuestro equipo experimentado</p>
+                    <p>• Más de $1000 de descuento, beneficios y pruebas en herramientas de IA</p>
+                    <p>• Una red de más de 7500 usuarios pioneros de IA</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Ensayo */}
+              <Card className="p-8 bg-slate-800 text-white border-slate-700">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Ensayo</h3>
+                  <div className="text-4xl font-bold mb-1">
+                    <span className="line-through text-slate-500">$999/año</span>
+                  </div>
+                  <div className="text-4xl font-bold text-green-400 mb-1">$0</div>
+                  <div className="text-slate-400 text-sm">prueba de 14 días</div>
+                </div>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 mb-6">
+                  Pruébelo gratis durante 14 días
+                </Button>
+                <div className="space-y-3">
+                  <p className="font-semibold mb-3">Desbloquear el acceso a:</p>
+                  <div className="text-sm space-y-2">
+                    <p>• 5-10 casos de uso de IA</p>
+                    <p>• Cursos de IA certificados para la industria seleccionada</p>
+                    <p>• Guías diarias paso a paso</p>
+                    <p>• Talleres semanales dirigidos por expertos (solo en vivo)</p>
+                    <p>• Una red de más de 7500 usuarios pioneros de IA</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Equipos */}
+              <Card className="p-8 bg-slate-800 text-white border-slate-700">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold mb-2">Equipos</h3>
+                  <div className="text-4xl font-bold mb-1">Costumbre</div>
+                  <div className="text-slate-400 text-sm">.</div>
+                </div>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 mb-6">
+                  Ponte en contacto con nosotros
+                </Button>
+                <div className="space-y-3">
+                  <p className="font-semibold mb-3">Todo lo del plan Completo, más:</p>
+                  <div className="text-sm space-y-2">
+                    <p>• Descuento por múltiples asientos</p>
+                    <p>• Panel de progreso del equipo</p>
+                    <p>• Flujos de trabajo personalizados</p>
+                    <p>• Incorporación personalizada</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
-          <p className="text-sm text-slate-400 mt-4">
-            Prueba gratuita de 7 días • Sin compromiso • Cancela cuando quieras
-          </p>
         </div>
       </section>
+
+      {/* Educational Team Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Conozca al equipo educativo</h2>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-slate-400 rounded-full mx-auto mb-4"></div>
+                <h4 className="font-bold text-slate-900 mb-1">Rowan Cheung</h4>
+                <p className="text-slate-600 text-sm">Fundador de The Rundown</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-24 h-24 bg-slate-400 rounded-full mx-auto mb-4"></div>
+                <h4 className="font-bold text-slate-900 mb-1">Dr. Álvaro Cintas</h4>
+                <p className="text-slate-600 text-sm">Profesor de IA con doctorado</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-24 h-24 bg-slate-400 rounded-full mx-auto mb-4"></div>
+                <h4 className="font-bold text-slate-900 mb-1">Clintin Lyle Kruger</h4>
+                <p className="text-slate-600 text-sm">Consultor/Educador de IA</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-24 h-24 bg-slate-400 rounded-full mx-auto mb-4"></div>
+                <h4 className="font-bold text-slate-900 mb-1">Dr. Jeremy Nguyen</h4>
+                <p className="text-slate-600 text-sm">Profesor/Investigador de Doctorado en IA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-slate-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Preguntas que hicieron nuestros miembros antes de unirse</h2>
+            </div>
+            
+            <FAQAccordion />
+            
+            <div className="text-center mt-12">
+              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg">
+                Únase a The Rundown AI University
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final Footer Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-lg text-slate-600 mb-8">
+                Entérate de las últimas noticias sobre IA, comprende su importancia y aprende a aplicarla en tu trabajo. Únete a más de 1.000.000 de lectores de empresas como Apple, OpenAI y la NASA.
+              </p>
+              <div className="flex max-w-md mx-auto">
+                <input 
+                  type="email" 
+                  placeholder="Dirección de correo electrónico" 
+                  className="flex-1 px-4 py-3 border border-slate-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                />
+                <Button className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-r-lg rounded-l-none">
+                  Suscribir
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-8 mb-12">
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-4">Manténgase actualizado</h4>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <p>Artículos</p>
+                  <p>Podcast</p>
+                  <p>Guías</p>
+                  <p>Herramientas</p>
+                  <p>Talleres</p>
+                  <p>Bolsa de trabajo de IA</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-4">Universidad de IA</h4>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <p>IA para empresas</p>
+                  <p>IA para codificación</p>
+                  <p>IA para la creación de contenido</p>
+                  <p>IA para la educación</p>
+                  <p>IA para marketing</p>
+                  <p>Todos los cursos de certificación</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-4">Compañía</h4>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <p>Anunciar</p>
+                  <p>Carreras</p>
+                  <p>Contáctenos</p>
+                  <p>política de privacidad</p>
+                  <p>Términos y condiciones</p>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-4">Contacto</h4>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <p>© 2025 The Rundown AI, Inc.</p>
+                  <p>Todos los derechos reservados.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// FAQ Component
+function FAQAccordion() {
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
+  const faqItems = [
+    "¿Qué es exactamente The Rundown AI University?",
+    "Soy principiante absoluto en IA. ¿Me ayudará esto?",
+    "¿En qué se diferencia de otros cursos de IA en línea?",
+    "¿Ofrecen certificaciones que pueda agregar a mi currículum?",
+    "¿Puedo deducir esto como gasto a través de la empresa para la que trabajo?",
+    "¿Con qué frecuencia se agrega contenido nuevo a la plataforma?",
+    "¿Qué puedo esperar en los talleres de IA?",
+    "¿Cuánto tiempo necesito dedicar cada semana?",
+    "¿Puedo solicitar cursos o guías específicos?",
+    "¿Sobre qué plataforma se basa The Rundown AI University?",
+    "¿Ofrecen opciones de pago mensual?",
+    "¿Ofrecen una garantía de devolución de dinero?",
+    "¿Cómo cancelo mi plan?",
+    "¿Cómo puedo obtener ayuda si la necesito?"
+  ];
+
+  return (
+    <div className="space-y-4">
+      {faqItems.map((question, index) => (
+        <div key={index} className="border border-slate-700 rounded-lg">
+          <button
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-800 transition-colors"
+            onClick={() => setOpenItem(openItem === index ? null : index)}
+          >
+            <span className="text-white">{question}</span>
+            {openItem === index ? (
+              <Minus className="w-5 h-5 text-white flex-shrink-0" />
+            ) : (
+              <Plus className="w-5 h-5 text-white flex-shrink-0" />
+            )}
+          </button>
+          {openItem === index && (
+            <div className="p-4 pt-0 text-slate-300">
+              <p>Respuesta para la pregunta: {question}</p>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
