@@ -3,8 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network, Quote, Plus, Minus } from "lucide-react";
 import Header from "@/components/shared/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 export default function Universidad() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const ld = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -57,25 +68,25 @@ export default function Universidad() {
       <Header />
       
       {/* Hero Section */}
-      <section className="text-white bg-neutral-900 pt-16">
-        <div className="container mx-auto px-4 py-20 bg-neutral-900">
+      <section className={`text-white transition-all duration-500 pt-16 ${isScrolled ? 'bg-white' : 'bg-neutral-900'}`}>
+        <div className={`container mx-auto px-4 py-20 transition-all duration-500 ${isScrolled ? 'bg-white' : 'bg-neutral-900'}`}>
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo TR University */}
             <div className="flex items-center justify-center mb-8">
-              <div className="w-10 h-10 bg-white rounded flex items-center justify-center mr-3">
-                <span className="text-slate-900 font-bold">TR</span>
+              <div className={`w-10 h-10 ${isScrolled ? 'bg-neutral-900' : 'bg-white'} rounded flex items-center justify-center mr-3 transition-colors duration-500`}>
+                <span className={`${isScrolled ? 'text-white' : 'text-slate-900'} font-bold transition-colors duration-500`}>TR</span>
               </div>
-              <span className="text-white text-xl font-semibold">
+              <span className={`text-xl font-semibold transition-colors duration-500 ${isScrolled ? 'text-neutral-900' : 'text-white'}`}>
                 The Rundown <span className="text-purple-400">University</span>
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className={`text-4xl md:text-6xl font-bold mb-6 leading-tight transition-colors duration-500 ${isScrolled ? 'text-neutral-900' : 'text-white'}`}>
               Educación en IA<br />
               personalizada para el<br />
               futuro del trabajo.
             </h1>
-            <p className="text-xl mb-8 max-w-3xl mx-auto text-white">
+            <p className={`text-xl mb-8 max-w-3xl mx-auto transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-white'}`}>
               Accede a certificaciones específicas de la industria, cientos de guías paso a paso y talleres de expertos en vivo para acelerar su carrera.
             </p>
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg">
