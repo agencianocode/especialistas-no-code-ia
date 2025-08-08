@@ -27,9 +27,11 @@ import {
   MoreHorizontal
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function UniversidadDashboard() {
   const [activeSection, setActiveSection] = useState('home');
+  const navigate = useNavigate();
 
   const sidebarItems = [
     { id: 'home', icon: Home, label: 'Home' },
@@ -41,6 +43,13 @@ export default function UniversidadDashboard() {
     { id: 'perks', icon: Star, label: 'Perks' },
     { id: 'settings', icon: Settings, label: 'Get started' }
   ];
+
+  const handleSidebarClick = (itemId: string) => {
+    setActiveSection(itemId);
+    if (itemId === 'courses') {
+      navigate('/universidad/cursos');
+    }
+  };
 
   const continueCard = {
     type: "Guide",
@@ -142,7 +151,7 @@ export default function UniversidadDashboard() {
           {sidebarItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveSection(item.id)}
+              onClick={() => handleSidebarClick(item.id)}
               className={`w-full flex items-center px-3 py-2 mb-1 text-sm rounded-lg transition-colors ${
                 activeSection === item.id 
                   ? 'bg-neutral-700 text-white' 
