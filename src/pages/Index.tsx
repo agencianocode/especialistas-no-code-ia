@@ -413,11 +413,11 @@ export default function Index() {
                 <Button variant="outline" className="border-white/30 text-white">Saber más</Button>
               </div>
             </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <FeatureTile title="Cursos de IA" description="Ruta estructurada desde cero a avanzado" Icon={BookOpen} />
-              <FeatureTile title="Guías diarias" description="Actualizaciones y prácticas cada día" Icon={LayoutDashboard} />
-              <FeatureTile title="Talleres" description="Sesiones en vivo con expertos" Icon={Users} />
-              <FeatureTile title="Comunidad" description="Apoyo y revisión de proyectos" Icon={MessageSquare} />
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              <FeatureTile title="Cursos de IA" description="Obtén acceso ilimitado a todos nuestros cursos de IA, actuales y futuros, específicos de cada sector durante tu suscripción. Cada curso incluye una certificación." Icon={BookOpen} />
+              <FeatureTile title="Guías diarias" description="Para seguir el ritmo de la IA, nuestro equipo publica a diario guías de implementación. Nuestra biblioteca contiene más de 300 casos prácticos para automatizar el trabajo en el mundo real." Icon={LayoutDashboard} />
+              <FeatureTile title="Talleres" description="Únase a sesiones interactivas semanales en vivo con líderes de la industria que están a la vanguardia de la IA para obtener orientación de implementación práctica y conocimientos exclusivos." Icon={Users} />
+              <FeatureTile title="Comunidad" description="Conéctate con una comunidad exclusiva de profesionales que priorizan la IA y trabajan con ella de forma más inteligente. Descubre cómo los pioneros la utilizan en su trabajo y sus negocios." Icon={MessageSquare} />
             </div>
           </div>
         </section>

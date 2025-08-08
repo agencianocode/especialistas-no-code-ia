@@ -18,13 +18,13 @@ const iconsMap: Record<string, LucideIcon> = {
 export default function FeatureTile({ title, description, Icon = BookOpen }: FeatureTileProps) {
   const Ico = Icon ?? iconsMap.book;
   return (
-    <Card className="bg-background/5 backdrop-blur border-border/40">
-      <CardContent className="p-5">
-        <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/50 bg-background/20">
-          <Ico className="h-5 w-5" />
+    <Card className="bg-slate-900 border-slate-700 text-white">
+      <CardContent className="p-6">
+        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-800 border border-slate-600">
+          <Ico className="h-6 w-6 text-purple-400" />
         </div>
-        <h4 className="font-semibold">{title}</h4>
-        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+        <h4 className="font-semibold text-lg mb-2">{title}</h4>
+        <p className="text-sm text-slate-300 leading-relaxed">{description}</p>
       </CardContent>
     </Card>
   );
