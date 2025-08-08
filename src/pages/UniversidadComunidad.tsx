@@ -514,17 +514,6 @@ export default function UniversidadComunidad() {
           </div>
         </div>
 
-        {/* Thread Panel - appears when a thread is active */}
-        {activeThread && (
-          <MessageThread
-            parentMessage={getActiveThreadMessage()!}
-            threadReplies={getActiveThreadReplies()}
-            roleConfig={roleConfig}
-            onClose={handleCloseThread}
-            onSendReply={handleSendThreadReply}
-          />
-        )}
-
         {/* Online Users Sidebar */}
         <div className={`${activeThread ? 'w-48' : 'w-64'} bg-neutral-800 border-l border-neutral-700 p-4 transition-all duration-200`}>
           <h3 className="font-semibold mb-4">Miembros en línea ({onlineUsers.length})</h3>
@@ -544,6 +533,17 @@ export default function UniversidadComunidad() {
             ))}
           </div>
         </div>
+
+        {/* Thread Panel - appears when a thread is active */}
+        {activeThread && (
+          <MessageThread
+            parentMessage={getActiveThreadMessage()!}
+            threadReplies={getActiveThreadReplies()}
+            roleConfig={roleConfig}
+            onClose={handleCloseThread}
+            onSendReply={handleSendThreadReply}
+          />
+        )}
       </div>
 
       {/* Search Modal */}

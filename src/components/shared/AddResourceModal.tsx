@@ -110,7 +110,7 @@ export default function AddResourceModal({ isOpen, onClose, channelId, onResourc
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl bg-neutral-900 text-white border-neutral-700">
+      <DialogContent className="max-w-2xl bg-neutral-900 text-white border-neutral-700 z-[75]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Plus className="w-5 h-5 text-purple-400" />

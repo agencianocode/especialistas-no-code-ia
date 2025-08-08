@@ -148,7 +148,7 @@ export default function SearchModal({ isOpen, onClose, messages, channels, users
 
             {/* Search History Dropdown */}
             {showHistory && searchHistory.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-neutral-800 border border-neutral-700 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-neutral-800 border border-neutral-700 rounded-lg shadow-lg z-[70] max-h-48 overflow-y-auto">
                 <div className="p-2 border-b border-neutral-700">
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-neutral-400 font-medium">BÚSQUEDAS RECIENTES</span>
