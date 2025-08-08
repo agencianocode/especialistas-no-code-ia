@@ -54,6 +54,8 @@ export default function UniversidadDashboard() {
       navigate('/universidad/talleres');
     } else if (itemId === 'events') {
       navigate('/universidad/eventos');
+    } else if (itemId === 'community') {
+      navigate('/universidad/comunidad');
     }
   };
 

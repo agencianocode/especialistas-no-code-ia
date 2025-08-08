@@ -19,6 +19,7 @@ import UniversidadGuias from "./pages/UniversidadGuias";
 import UniversidadTalleres from "./pages/UniversidadTalleres";
 import UniversidadEventos from "./pages/UniversidadEventos";
 import UniversidadEventoDetalle from "./pages/UniversidadEventoDetalle";
+import UniversidadComunidad from "./pages/UniversidadComunidad";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/universidad/talleres" element={<UniversidadTalleres />} />
           <Route path="/universidad/eventos" element={<UniversidadEventos />} />
           <Route path="/universidad/evento/:eventoId" element={<UniversidadEventoDetalle />} />
+          <Route path="/universidad/comunidad" element={<UniversidadComunidad />} />
           <Route path="/universidad/curso/:cursoId" element={<UniversidadCursoDetalle />} />
           <Route path="/universidad/curso/:cursoId/leccion/:leccionId" element={<UniversidadLeccion />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
