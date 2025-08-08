@@ -11,6 +11,7 @@ import Herramientas from "./pages/Herramientas";
 import Podcast from "./pages/Podcast";
 import Talleres from "./pages/Talleres";
 import Universidad from "./pages/Universidad";
+import UniversidadDashboard from "./pages/UniversidadDashboard";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/talleres" element={<Talleres />} />
           <Route path="/universidad" element={<Universidad />} />
+          <Route path="/universidad/dashboard" element={<UniversidadDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
