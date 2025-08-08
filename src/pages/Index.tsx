@@ -12,6 +12,7 @@ import LogoCloud from "@/components/shared/LogoCloud";
 import AudioPlaylistCard from "@/components/shared/AudioPlaylistCard";
 import WorkshopCard from "@/components/shared/WorkshopCard";
 import FeatureTile from "@/components/shared/FeatureTile";
+import ResponsiveHeader from "@/components/shared/ResponsiveHeader";
 
 const dummyArticles = [
   { title: "El potencial doble de Gemini", tag: "Noticias", date: "Hoy", excerpt: "Análisis y roadmap de capacidades.", image: "/placeholder.svg" },
@@ -65,48 +66,7 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <header className="sticky top-0 z-40 w-full bg-foreground text-background">
-        <div className="container-responsive flex h-16 items-center justify-between">
-          <a href="/" className="flex items-center gap-2 font-bold tracking-tight hover:opacity-80 transition-opacity">
-            <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-foreground font-bold text-sm">
-              RR
-            </div>
-            <span className="text-white">The Rundown</span>
-          </a>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm text-white/90" role="navigation">
-            <a href="/universidad" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Universidad de IA</a>
-            <a href="/articulos" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Artículos</a>
-            <a href="/guias" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Guías</a>
-            <a href="/herramientas" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Herramientas</a>
-            <a href="/podcast" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Cursos</a>
-            <a href="/talleres" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Talleres</a>
-            <a href="#" className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-2 py-1">Anunciar</a>
-          </nav>
-          
-          {/* Mobile Menu Button + Login */}
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="border-white/30 text-white hover:bg-white/10 transition-all duration-200 hidden md:flex"
-            >
-              Inicio de sesión de la Universidad →
-            </Button>
-            
-            {/* Mobile menu toggle would go here */}
-            <button 
-              className="lg:hidden text-white hover:text-white/80 transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label="Abrir menú"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+      <ResponsiveHeader />
 
       <main>
         {/* Hero Section - Responsive */}
