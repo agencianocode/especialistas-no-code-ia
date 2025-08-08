@@ -39,6 +39,8 @@ import { useNavigate } from "react-router-dom";
 import MessageItem from "@/components/shared/MessageItem";
 import MessageThread from "@/components/shared/MessageThread";
 import SearchModal from "@/components/shared/SearchModal";
+import GamificationPanel from "@/components/shared/GamificationPanel";
+import { GamificationService } from "@/utils/GamificationService";
 
 export default function UniversidadComunidad() {
   const [activeSection, setActiveSection] = useState('community');
@@ -47,6 +49,8 @@ export default function UniversidadComunidad() {
   const [activeThread, setActiveThread] = useState<number | null>(null);
   const [threadNotifications, setThreadNotifications] = useState<number[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isGamificationOpen, setIsGamificationOpen] = useState(false);
+  const [userStats, setUserStats] = useState(GamificationService.getUserStats('current_user'));
   const navigate = useNavigate();
 
   const sidebarItems = [
@@ -238,6 +242,10 @@ export default function UniversidadComunidad() {
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
+      // Award points for sending a message
+      const newStats = GamificationService.addPoints('current_user', 'MESSAGE_SENT');
+      setUserStats(newStats);
+      
       // Aquí se enviaría el mensaje en una implementación real
       setNewMessage('');
     }
@@ -327,19 +335,38 @@ export default function UniversidadComunidad() {
         {/* Bottom User Section */}
         <div className="absolute bottom-4 left-4 right-4">
           <div className="flex items-center p-3 bg-neutral-700 rounded-lg">
-            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3 relative">
               <span className="text-white font-semibold text-sm">F</span>
+              {userStats.level > 1 && (
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-black">
+                  {userStats.level}
+                </div>
+              )}
             </div>
             <div className="flex-1">
               <div className="text-sm font-medium">fabianiela</div>
-              <div className="flex items-center">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-1"></div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                 <div className="text-xs text-neutral-300">En línea</div>
+                <div className="flex items-center gap-1 text-xs text-purple-400">
+                  <Zap className="w-3 h-3" />
+                  <span>{userStats.points}</span>
+                </div>
               </div>
             </div>
-            <Button variant="ghost" size="sm" className="p-1">
-              <Settings className="w-4 h-4" />
-            </Button>
+            <div className="flex gap-1">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="p-1 text-yellow-400 hover:text-yellow-300"
+                onClick={() => setIsGamificationOpen(true)}
+              >
+                <Award className="w-4 h-4" />
+              </Button>
+              <Button variant="ghost" size="sm" className="p-1">
+                <Settings className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -510,6 +537,13 @@ export default function UniversidadComunidad() {
         messages={messages}
         channels={channelCategories.flatMap(cat => cat.channels)}
         users={[...new Set(messages.map(msg => msg.user.name))]}
+      />
+
+      {/* Gamification Panel */}
+      <GamificationPanel
+        userId="current_user"
+        isOpen={isGamificationOpen}
+        onClose={() => setIsGamificationOpen(false)}
       />
     </div>
   );
