@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, ArrowRight, Sparkles, BookOpen, LayoutDashboard, Users, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -10,17 +10,21 @@ import Chip from "@/components/shared/Chip";
 import ArticleCard from "@/components/shared/ArticleCard";
 import LogoCloud from "@/components/shared/LogoCloud";
 import AudioPlaylistCard from "@/components/shared/AudioPlaylistCard";
+import WorkshopCard from "@/components/shared/WorkshopCard";
+import FeatureTile from "@/components/shared/FeatureTile";
+
 const dummyArticles = [
-  { title: "El potencial doble de Gemini", tag: "Noticias", date: "Hoy", excerpt: "Análisis y roadmap de capacidades." },
-  { title: "Lanzamientos clave de la semana", tag: "Actualidad", date: "Ayer" },
-  { title: "Cómo elegir la mejor herramienta de IA", tag: "Guías", date: "Ayer" },
-  { title: "Riesgos y oportunidades de los agentes", tag: "Análisis", date: "Esta semana" },
+  { title: "El potencial doble de Gemini", tag: "Noticias", date: "Hoy", excerpt: "Análisis y roadmap de capacidades.", image: "/placeholder.svg" },
+  { title: "Lanzamientos clave de la semana", tag: "Actualidad", date: "Ayer", image: "/placeholder.svg" },
+  { title: "Cómo elegir la mejor herramienta de IA", tag: "Guías", date: "Ayer", image: "/placeholder.svg" },
+  { title: "Riesgos y oportunidades de los agentes", tag: "Análisis", date: "Esta semana", image: "/placeholder.svg" },
 ];
 
 const categories = ["Todos", "Noticias", "Guías", "Análisis", "Tutoriales"] as const;
 
 const dummyGuides = [
-  "Prompting efectivo", "Automatiza con IA", "Vision + OCR", "RAG y embeddings", "Herramientas no-code", "Flujos con agentes"
+  "Prompting efectivo", "Automatiza con IA", "Vision + OCR", "RAG y embeddings", "Herramientas no-code", "Flujos con agentes",
+  "Evaluación de modelos", "Agentes y orquestación", "Seguridad de IA", "Data pipelines para RAG", "Búsqueda híbrida", "Quality gates"
 ];
 
 const dummyTools = [
@@ -82,29 +86,29 @@ export default function Index() {
       </header>
 
       <main>
-        {/* Hero */}
-        <section className="relative overflow-hidden border-b border-border/50">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,hsl(var(--primary)/0.14),transparent)]" />
-          <div className="container mx-auto grid gap-8 px-4 py-16 md:py-24">
+        {/* Hero oscuro */}
+        <section className="relative overflow-hidden bg-foreground text-background">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,hsl(var(--primary)/0.25),transparent)]" />
+          <div className="container mx-auto grid gap-6 px-4 py-14 md:py-20">
             <div className="mx-auto max-w-3xl text-center animate-fade-in">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-3 py-1 text-xs text-muted-foreground">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/80">
                 <Sparkles className="h-3.5 w-3.5" /> Aprenda IA en 5 minutos al día
               </div>
               <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-6xl">
                 Aprenda IA en <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-glow))]">5 minutos</span> al día.
               </h1>
-              <p className="mt-4 text-lg text-muted-foreground md:text-xl">
+              <p className="mt-4 text-lg text-white/80 md:text-xl">
                 Resúmenes claros, guías prácticas y herramientas seleccionadas. Todo en español.
               </p>
-              {/* Capsule form */}
-              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex w-full max-w-2xl items-center gap-2 rounded-full border border-border bg-card p-2 shadow-sm">
+              {/* Formulario cápsula */}
+              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex w-full max-w-2xl items-center gap-2 rounded-full border border-white/20 bg-white/5 p-2 shadow-sm">
                 <label htmlFor="email" className="sr-only">Correo electrónico</label>
-                <Input id="email" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-12 rounded-full border-0 bg-transparent focus-visible:ring-0" />
+                <Input id="email" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-12 rounded-full border-0 bg-transparent text-white placeholder:text-white/60 focus-visible:ring-0" />
                 <Button type="submit" variant="hero" size="xl" className="rounded-full px-6">
                   <Mail className="mr-1.5" /> Suscribirse
                 </Button>
               </form>
-              <p className="mt-3 text-sm text-muted-foreground">Únete a más de 120,000 lectores.</p>
+              <p className="mt-3 text-sm text-white/70">★★★★★ 4.9/5 · Confiado por más de 120,000 lectores</p>
               {/* Logo cloud */}
               <LogoCloud logos={logos} />
             </div>
@@ -125,9 +129,9 @@ export default function Index() {
             {categories.map((c) => (
               <TabsContent key={c} value={c} className="mt-6">
                 <div className="grid gap-6 md:grid-cols-3 md:auto-rows-[1fr]">
-                  <ArticleCard featured title={dummyArticles[0].title} tag={dummyArticles[0].tag} date={dummyArticles[0].date} excerpt={dummyArticles[0].excerpt} />
+                  <ArticleCard featured title={dummyArticles[0].title} tag={dummyArticles[0].tag} date={dummyArticles[0].date} excerpt={dummyArticles[0].excerpt} image={dummyArticles[0].image} />
                   {dummyArticles.slice(1).map((a, i) => (
-                    <ArticleCard key={i} title={a.title} tag={a.tag} date={a.date} />
+                    <ArticleCard key={i} title={a.title} tag={a.tag} date={a.date} image={a.image} />
                   ))}
                 </div>
               </TabsContent>
@@ -135,30 +139,18 @@ export default function Index() {
           </Tabs>
         </section>
 
-        {/* Guías */}
+        {/* Guías densas */}
         <section id="guias" className="container mx-auto px-4 py-12 md:py-16">
           <SectionHeader title="Guías" subtitle="Aprenda conceptos clave de IA con ejemplos prácticos." href="/guias" />
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-3">
-              {dummyGuides.slice(0, 3).map((g, i) => (
-                <Card key={i} className="hover:shadow-[var(--shadow-elevated)] transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-base">{g}</CardTitle>
-                    <CardDescription>Lectura de 5–8 minutos</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-            <div className="space-y-3">
-              {dummyGuides.slice(3, 6).map((g, i) => (
-                <Card key={i} className="hover:shadow-[var(--shadow-elevated)] transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="text-base">{g}</CardTitle>
-                    <CardDescription>Lectura de 5–8 minutos</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {dummyGuides.map((g, i) => (
+              <Card key={i} className="hover:shadow-[var(--shadow-elevated)] transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-base">{g}</CardTitle>
+                  <CardDescription>Lectura de 5–8 minutos</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
           </div>
         </section>
 
@@ -196,20 +188,74 @@ export default function Index() {
             <AudioPlaylistCard title="Episodios recientes" subtitle="Actualizado cada semana" episodes={[{ title: 'Cómo la IA está cambiando el trabajo del conocimiento' }, { title: 'Modelos multimodales: casos reales' }, { title: 'Evaluando agentes con métricas prácticas' }]} />
           </div>
         </section>
+
+        {/* Talleres */}
+        <section className="container mx-auto px-4 py-12 md:py-16">
+          <SectionHeader title="Aprenda directamente de expertos en IA" subtitle="Talleres en vivo con ejercicios prácticos y Q&A" href="/talleres" />
+          <div className="grid gap-4 md:grid-cols-2">
+            <WorkshopCard title="Prompting aplicado" instructor="Ana García" role="ML Engineer" date="Jue 18:00" duration="2h" />
+            <WorkshopCard title="Automatizaciones con IA" instructor="Carlos Pérez" role="AI Architect" date="Sáb 10:00" duration="2h" />
+          </div>
+        </section>
+
+        {/* Universidad - bloque oscuro */}
+        <section className="relative overflow-hidden bg-foreground text-background">
+          <div className="container mx-auto px-4 py-16">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/80">IA al Día University</div>
+              <h3 className="mt-3 text-3xl font-bold md:text-4xl">Capacitación en IA para el futuro del trabajo.</h3>
+              <p className="mt-2 text-white/80">Cursos, guías, talleres y comunidad para dominar IA aplicada a negocio y producto.</p>
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <Button variant="hero">Comenzar la ruta</Button>
+                <Button variant="outline" className="border-white/30 text-white">Saber más</Button>
+              </div>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <FeatureTile title="Cursos de IA" description="Ruta estructurada desde cero a avanzado" Icon={BookOpen} />
+              <FeatureTile title="Guías diarias" description="Actualizaciones y prácticas cada día" Icon={LayoutDashboard} />
+              <FeatureTile title="Talleres" description="Sesiones en vivo con expertos" Icon={Users} />
+              <FeatureTile title="Comunidad" description="Apoyo y revisión de proyectos" Icon={MessageSquare} />
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t border-border/50">
         <div className="container mx-auto px-4 py-10">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+          <div className="grid gap-10 md:grid-cols-4">
             <div>
-              <h4 className="text-lg font-semibold">Suscríbete al boletín</h4>
-              <p className="mt-1 text-sm text-muted-foreground">Resumen diario de IA, directo a tu correo.</p>
+              <h4 className="font-semibold">IA al Día</h4>
+              <p className="mt-2 text-sm text-muted-foreground">Aprende IA con resúmenes claros en 5 minutos.</p>
+              <form onSubmit={onSubscribe} className="mt-4 flex w-full max-w-md items-center gap-2 rounded-md border border-border bg-card p-2">
+                <label htmlFor="email-footer" className="sr-only">Correo electrónico</label>
+                <Input id="email-footer" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-10 border-0 bg-transparent focus-visible:ring-0" />
+                <Button type="submit" variant="hero">Suscribirse</Button>
+              </form>
             </div>
-            <form onSubmit={onSubscribe} className="flex w-full max-w-md items-center gap-2 rounded-md border border-border bg-card p-2">
-              <label htmlFor="email-footer" className="sr-only">Correo electrónico</label>
-              <Input id="email-footer" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-10 border-0 bg-transparent focus-visible:ring-0" />
-              <Button type="submit" variant="hero">Suscribirse</Button>
-            </form>
+            <div>
+              <h5 className="mb-3 text-sm font-semibold">Contenido</h5>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/articulos">Artículos</a></li>
+                <li><a href="/guias">Guías</a></li>
+                <li><a href="/herramientas">Herramientas</a></li>
+                <li><a href="/podcast">Podcast</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="mb-3 text-sm font-semibold">Formación</h5>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/talleres">Talleres</a></li>
+                <li><a href="/universidad">Universidad</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="mb-3 text-sm font-semibold">Legal</h5>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#">Privacidad</a></li>
+                <li><a href="#">Términos</a></li>
+                <li><a href="#">Contacto</a></li>
+              </ul>
+            </div>
           </div>
           <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-6 md:flex-row">
             <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} IA al Día · Todos los derechos reservados</p>

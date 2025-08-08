@@ -8,19 +8,27 @@ export interface ArticleCardProps {
   date?: string;
   excerpt?: string;
   featured?: boolean;
+  image?: string;
 }
 
-export default function ArticleCard({ title, tag, date, excerpt, featured }: ArticleCardProps) {
+export default function ArticleCard({ title, tag, date, excerpt, featured, image }: ArticleCardProps) {
+  const Meta = (
+    <CardDescription>
+      {tag}{tag && date ? " · " : ""}{date}
+    </CardDescription>
+  );
+
   if (featured) {
     return (
-      <Card className="group col-span-2 row-span-2 h-full hover:shadow-[var(--shadow-elevated)] transition-shadow">
+      <Card className="group col-span-2 row-span-2 h-full overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+        {image && (
+          <div className="aspect-[16/9] w-full overflow-hidden">
+            <img src={image} alt={`Imagen de ${title}`} className="h-full w-full object-cover" loading="lazy" />
+          </div>
+        )}
         <CardHeader>
           <CardTitle className="text-2xl md:text-3xl">{title}</CardTitle>
-          {(tag || date) && (
-            <CardDescription>
-              {tag}{tag && date ? " · " : ""}{date}
-            </CardDescription>
-          )}
+          {(tag || date) && Meta}
         </CardHeader>
         <CardContent>
           {excerpt && <p className="mb-4 text-muted-foreground">{excerpt}</p>}
@@ -33,14 +41,15 @@ export default function ArticleCard({ title, tag, date, excerpt, featured }: Art
   }
 
   return (
-    <Card className="group hover:shadow-[var(--shadow-elevated)] transition-shadow h-full">
+    <Card className="group h-full overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+      {image && (
+        <div className="aspect-[16/9] w-full overflow-hidden">
+          <img src={image} alt={`Miniatura de ${title}`} className="h-full w-full object-cover" loading="lazy" />
+        </div>
+      )}
       <CardHeader>
         <CardTitle className="text-lg">{title}</CardTitle>
-        {(tag || date) && (
-          <CardDescription>
-            {tag}{tag && date ? " · " : ""}{date}
-          </CardDescription>
-        )}
+        {(tag || date) && Meta}
       </CardHeader>
       {excerpt && (
         <CardContent>
