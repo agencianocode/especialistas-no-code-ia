@@ -86,7 +86,7 @@ export default function Universidad() {
       </section>
 
       {/* Company Logos Section */}
-      <section className="bg-slate-900 py-12 border-t border-slate-800">
+      <section className="py-12 border-t border-slate-800 bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-slate-400 mb-8">
