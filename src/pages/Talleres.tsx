@@ -1,5 +1,9 @@
+import ResponsiveHeader from "@/components/shared/ResponsiveHeader";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, Clock, Users, Star, ArrowRight } from "lucide-react";
 
 export default function Talleres() {
   const ld = {
@@ -9,24 +13,28 @@ export default function Talleres() {
   };
 
   const workshops = [
-    { title: "Prompting aplicado", desc: "Sesión práctica" },
-    { title: "Automatizaciones con IA", desc: "2 horas intensivas" },
+    { title: "Taller de Prompting", date: "Próximo", duration: "2 horas" },
+    { title: "Workshop de RAG", date: "En 2 semanas", duration: "3 horas" },
+    { title: "Sesión de Automatización", date: "En 1 mes", duration: "4 horas" },
   ];
 
   return (
-    <main className="container mx-auto px-4 py-12 md:py-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <SectionHeader title="Talleres" subtitle="Aprende en vivo con ejercicios" />
-      <div className="grid gap-4 sm:grid-cols-2">
-        {workshops.map((w, i) => (
-          <Card key={i}>
-            <CardHeader>
-              <CardTitle className="text-base">{w.title}</CardTitle>
-              <CardDescription>{w.desc}</CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </div>
-    </main>
+    <div className="min-h-screen bg-background">
+      <ResponsiveHeader />
+      <main className="container mx-auto px-4 py-12 md:py-16">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+        <SectionHeader title="Talleres" subtitle="Aprende con expertos en sesiones prácticas" />
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {workshops.map((workshop, i) => (
+            <Card key={i} className="hover:translate-y-[-2px] hover:shadow-[var(--shadow-elevated)] transition-all">
+              <CardHeader>
+                <CardTitle className="text-base">{workshop.title}</CardTitle>
+                <CardDescription>{workshop.duration} • {workshop.date}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }

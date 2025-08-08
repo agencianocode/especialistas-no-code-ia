@@ -50,6 +50,21 @@ All colors MUST be HSL.
     --border-radius-lg: 1rem;
     --border-radius-xl: 1.5rem;
 
+    /* Colores de marca específicos */
+    --brand-purple: 265 83% 58%;
+    --brand-pink: 330 83% 58%;
+    --brand-gradient: linear-gradient(135deg, hsl(265 83% 58%), hsl(330 83% 58%));
+
+    /* Colores de gamificación */
+    --level-gold: 45 100% 50%;
+    --xp-blue: 210 100% 50%;
+    --badge-green: 142 76% 36%;
+
+    /* Estados de usuario */
+    --online-green: 142 76% 36%;
+    --offline-gray: 220 13% 91%;
+    --away-yellow: 45 100% 50%;
+
     /* Typography Scale */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;

@@ -2,12 +2,24 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, User, LogOut, Settings, Crown, Trophy } from "lucide-react";
+import { useAuth } from "@/hooks/useSupabase";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 export default function ResponsiveHeader() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut, loading } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +39,84 @@ export default function ResponsiveHeader() {
     { label: "Talleres", href: "/talleres" },
     { label: "Anunciar", href: "#" }
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
+  const getUserInitials = (fullName: string | null) => {
+    if (!fullName) return "U";
+    return fullName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  };
+
+  const UserMenu = () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={user?.user_metadata?.avatar_url} alt={user?.user_metadata?.full_name} />
+            <AvatarFallback className="bg-primary text-primary-foreground">
+              {getUserInitials(user?.user_metadata?.full_name)}
+            </AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">
+              {user?.user_metadata?.full_name || user?.email}
+            </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user?.email}
+            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <Badge variant="secondary" className="text-xs">
+                <Crown className="w-3 h-3 mr-1" />
+                Nivel {user?.level || 1}
+              </Badge>
+              <Badge variant="outline" className="text-xs">
+                <Trophy className="w-3 h-3 mr-1" />
+                {user?.experience || 0} XP
+              </Badge>
+            </div>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link to="/universidad/dashboard" className="cursor-pointer">
+            <User className="mr-2 h-4 w-4" />
+            <span>Mi Dashboard</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/universidad/perfil" className="cursor-pointer">
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Configuración</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>Cerrar sesión</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+
+  const LoginButton = () => (
+    <Button 
+      variant="outline" 
+      size="sm" 
+      className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200"
+      asChild
+    >
+      <Link to="/login">
+        Inicio de sesión
+        <ArrowRight className="w-4 h-4 ml-1" />
+      </Link>
+    </Button>
+  );
 
   return (
     <header 
@@ -67,16 +157,15 @@ export default function ResponsiveHeader() {
             ))}
           </nav>
 
-          {/* Desktop Login Button */}
+          {/* Desktop Auth Section */}
           <div className="hidden md:flex items-center">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200"
-            >
-              Inicio de sesión
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
+            {loading ? (
+              <div className="w-8 h-8 rounded-full bg-slate-700 animate-pulse" />
+            ) : user ? (
+              <UserMenu />
+            ) : (
+              <LoginButton />
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -136,15 +225,77 @@ export default function ResponsiveHeader() {
                     </div>
                   </nav>
 
-                  {/* Mobile Login Button */}
+                  {/* Mobile Auth Section */}
                   <div className="pt-6 border-t border-neutral-800">
-                    <Button 
-                      className="w-full bg-primary hover:bg-primary/90 text-white"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Inicio de sesión
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    {loading ? (
+                      <div className="w-full h-10 rounded-lg bg-slate-700 animate-pulse" />
+                    ) : user ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-slate-800">
+                          <Avatar className="h-8 w-8">
+                            <AvatarImage src={user?.user_metadata?.avatar_url} alt={user?.user_metadata?.full_name} />
+                            <AvatarFallback className="bg-primary text-primary-foreground">
+                              {getUserInitials(user?.user_metadata?.full_name)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-white truncate">
+                              {user?.user_metadata?.full_name || user?.email}
+                            </p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <Badge variant="secondary" className="text-xs">
+                                <Crown className="w-3 h-3 mr-1" />
+                                Nivel {user?.level || 1}
+                              </Badge>
+                              <Badge variant="outline" className="text-xs">
+                                <Trophy className="w-3 h-3 mr-1" />
+                                {user?.experience || 0} XP
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Link 
+                            to="/universidad/dashboard" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block px-4 py-3 rounded-lg text-base text-slate-300 hover:text-white hover:bg-slate-800"
+                          >
+                            <User className="w-4 h-4 inline mr-2" />
+                            Mi Dashboard
+                          </Link>
+                          <Link 
+                            to="/universidad/perfil" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block px-4 py-3 rounded-lg text-base text-slate-300 hover:text-white hover:bg-slate-800"
+                          >
+                            <Settings className="w-4 h-4 inline mr-2" />
+                            Configuración
+                          </Link>
+                          <Button 
+                            variant="ghost" 
+                            onClick={() => {
+                              handleSignOut();
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className="w-full justify-start px-4 py-3 text-base text-red-400 hover:text-red-300 hover:bg-red-900/20"
+                          >
+                            <LogOut className="w-4 h-4 mr-2" />
+                            Cerrar sesión
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <Button 
+                        className="w-full bg-primary hover:bg-primary/90 text-white"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        asChild
+                      >
+                        <Link to="/login">
+                          Inicio de sesión
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </SheetContent>
