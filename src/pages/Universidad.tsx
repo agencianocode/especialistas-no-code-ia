@@ -4,15 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network, Quote, Plus, Minus } from "lucide-react";
 import Header from "@/components/shared/Header";
 import { useState, useEffect } from "react";
-
 export default function Universidad() {
   const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 200);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -189,7 +186,7 @@ export default function Universidad() {
       </section>
 
       {/* Certification Courses Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
