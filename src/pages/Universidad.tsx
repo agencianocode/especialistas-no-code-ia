@@ -57,7 +57,7 @@ export default function Universidad() {
       <Header />
       
       {/* Hero Section */}
-      <section className="text-white bg-neutral-900">
+      <section className="text-white bg-neutral-900 pt-16">
         <div className="container mx-auto px-4 py-20 bg-neutral-900">
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo TR University */}
