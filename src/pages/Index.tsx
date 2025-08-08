@@ -167,30 +167,30 @@ export default function Index() {
           </div>
           
           {/* Filtros por categorías */}
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
             <Chip selected>Todo</Chip>
             <Chip>👨‍💻 Codificación</Chip>
             <Chip>📈 Marketing</Chip>
             <Chip>✏️ Creador de contenido</Chip>
           </div>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
             <Chip>📚 Educador</Chip>
             <Chip>💼 Ventas</Chip>
             <Chip>🎨 Diseño</Chip>
             <Chip>📊 Análisis de datos</Chip>
           </div>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
             <Chip>📋 Gestión de proyectos</Chip>
             <Chip>🤝 Consultante</Chip>
             <Chip>💰 Finanzas</Chip>
             <Chip>🏛️ Gobierno</Chip>
           </div>
-          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-3 flex flex-wrap items-center justify-center gap-3">
             <Chip>🏥 Cuidado de la salud</Chip>
             <Chip>⚖️ Legal</Chip>
             <Chip>👥 Reclutamiento de RRHH</Chip>
           </div>
-          <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
             <Chip>🎓 Alumno</Chip>
             <Chip>📋 General</Chip>
             <Chip>🏢 Operaciones comerciales</Chip>
