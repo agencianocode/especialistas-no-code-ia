@@ -13,6 +13,19 @@ import AudioPlaylistCard from "@/components/shared/AudioPlaylistCard";
 import WorkshopCard from "@/components/shared/WorkshopCard";
 import FeatureTile from "@/components/shared/FeatureTile";
 import ResponsiveHeader from "@/components/shared/ResponsiveHeader";
+import { 
+  HeroText, 
+  Subtitle, 
+    Caption,
+  Container, 
+  Section, 
+  VStack, 
+  HStack,
+  ColorText,
+  GradientText,
+  Animated
+} from "@/components/ui/design-system";
+
 
 const dummyArticles = [
   { title: "El potencial doble de Gemini", tag: "Noticias", date: "Hoy", excerpt: "Análisis y roadmap de capacidades.", image: "/placeholder.svg" },
@@ -70,49 +83,58 @@ export default function Index() {
 
       <main>
         {/* Hero Section - Responsive */}
-        <section className="relative overflow-hidden bg-foreground text-background">
-          <div className="container-responsive grid gap-8 spacing-section">
-            <div className="mx-auto max-w-4xl text-center animate-fade-in">
-              <h1 className="font-bold tracking-tight text-balance">
-                Aprenda IA en <span className="text-[#c855ff]">5</span>
-                <br />
-                <span className="text-[#c855ff]">minutos</span> al día.
-              </h1>
-              <p className="mt-6 text-responsive text-white/80 max-w-2xl mx-auto text-balance">
-                Obtenga las últimas noticias sobre IA, comprenda por qué es importante y aprenda cómo aplicarla en su trabajo.
-              </p>
+        <Section className="relative overflow-hidden bg-foreground text-background">
+          <Container>
+            <VStack size="2xl" className="mx-auto max-w-4xl text-center">
+              <Animated animation="fade-in">
+                <HeroText className="text-background">
+                  Aprende IA en <ColorText variant="brand">5</ColorText>
+                  <br />
+                  <ColorText variant="brand">minutos</ColorText> al día.
+                </HeroText>
+              </Animated>
               
-              {/* Responsive Newsletter Form */}
-              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex flex-col sm:flex-row w-full max-w-lg items-center gap-2 sm:gap-0 sm:rounded-full bg-white p-1 shadow-lg">
-                <label htmlFor="email" className="sr-only">Dirección de correo electrónico</label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  required 
-                  placeholder="Dirección de correo electrónico" 
-                  value={email} 
-                  onChange={(e) => setEmail(e.target.value)} 
-                  className="h-12 flex-1 rounded-lg sm:rounded-full border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 px-6" 
-                />
-                <Button type="submit" size="lg" className="w-full sm:w-auto rounded-lg sm:rounded-full bg-foreground text-background hover:bg-foreground/90 px-6 min-h-[48px]">
-                  Suscribir ✈
-                </Button>
-              </form>
-              
-              <p className="mt-6 text-sm text-white/70 text-balance">Únase a más de 1.000.000 de lectores de empresas como:</p>
-              
-              {/* Responsive Logo Cloud */}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-60">
-                <span className="text-lg sm:text-2xl font-bold text-white">Google</span>
-                <span className="text-lg sm:text-2xl font-bold text-white">Meta</span>
-                <span className="text-base sm:text-lg font-bold text-white">cisco</span>
-                <span className="text-lg sm:text-xl font-bold text-white">HubSpot</span>
-                <span className="text-lg sm:text-2xl font-bold text-white">IBM</span>
-                <span className="text-lg sm:text-xl font-bold text-white">Microsoft</span>
-              </div>
-            </div>
-          </div>
-        </section>
+                             <Animated animation="fade-in" delay={200}>
+                 <Subtitle className="text-background/80 max-w-2xl mx-auto">
+                   Obtenga las últimas noticias sobre IA, comprenda por qué es importante y aprenda cómo aplicarla en su trabajo.
+                 </Subtitle>
+               </Animated>
+               
+               {/* Responsive Newsletter Form */}
+               <Animated animation="fade-in" delay={400}>
+                 <form onSubmit={onSubscribe} className="mx-auto flex flex-col sm:flex-row w-full max-w-lg items-center gap-2 sm:gap-0 sm:rounded-full bg-white p-1 shadow-lg">
+                   <label htmlFor="email" className="sr-only">Dirección de correo electrónico</label>
+                   <Input 
+                     id="email" 
+                     type="email" 
+                     required 
+                     placeholder="Dirección de correo electrónico" 
+                     value={email} 
+                     onChange={(e) => setEmail(e.target.value)} 
+                     className="h-12 flex-1 rounded-lg sm:rounded-full border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 px-6" 
+                   />
+                   <Button type="submit" size="lg" className="w-full sm:w-auto rounded-lg sm:rounded-full bg-foreground text-background hover:bg-foreground/90 px-6 min-h-[48px]">
+                     Suscribir ✈
+                   </Button>
+                 </form>
+               </Animated>
+               
+               <Animated animation="fade-in" delay={600}>
+                 <p className="text-sm text-background/70 text-balance">Únase a más de 1.000.000 de lectores de empresas como:</p>
+                 
+                 {/* Responsive Logo Cloud */}
+                 <HStack size="lg" className="flex-wrap items-center justify-center opacity-60">
+                   <span className="text-lg sm:text-2xl font-bold text-background">Google</span>
+                   <span className="text-lg sm:text-2xl font-bold text-background">Meta</span>
+                   <span className="text-base sm:text-lg font-bold text-background">cisco</span>
+                   <span className="text-lg sm:text-xl font-bold text-background">HubSpot</span>
+                   <span className="text-lg sm:text-2xl font-bold text-background">IBM</span>
+                   <span className="text-lg sm:text-xl font-bold text-background">Microsoft</span>
+                 </HStack>
+               </Animated>
+             </VStack>
+           </Container>
+         </Section>
 
         {/* Articles Section - Responsive */}
         <section id="articulos" className="container-responsive spacing-section">
@@ -136,6 +158,11 @@ export default function Index() {
                   {dummyArticles.slice(1).map((a, i) => (
                     <ArticleCard key={i} title={a.title} tag={a.tag} date={a.date} image={a.image} />
                   ))}
+                </div>
+                <div className="mt-6 text-center">
+                  <Button variant="secondary" asChild>
+                    <a href="/articulos">Ver todos los artículos</a>
+                  </Button>
                 </div>
               </TabsContent>
             ))}
@@ -350,8 +377,8 @@ export default function Index() {
               <Chip key={c}>{c}</Chip>
             ))}
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            {dummyTools.map((t, i) => (
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+            {[...dummyTools, ...dummyTools].map((t, i) => (
               <Card key={i} className="text-center">
                 <CardHeader>
                   <CardTitle className="text-base">{t}</CardTitle>
@@ -360,52 +387,134 @@ export default function Index() {
               </Card>
             ))}
           </div>
+          <div className="mt-6 text-center">
+            <Button variant="secondary" asChild>
+              <a href="/herramientas">Ver todas las herramientas</a>
+            </Button>
+          </div>
         </section>
 
         {/* Podcast / Estado de la IA */}
         <section className="container mx-auto px-4 py-12 md:py-16">
-          <div className="grid items-center gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="text-2xl font-bold">El estado de la IA</h3>
-              <p className="mt-2 text-muted-foreground">Un resumen semanal con lo más importante: avances, lanzamientos y oportunidades.</p>
-              <div className="mt-4 flex gap-3">
-                <Button variant="hero"><Sparkles className="mr-2" />Escuchar ahora</Button>
-                <Button variant="outline" asChild><a href="/podcast">Ver episodios</a></Button>
-              </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <Caption>Podcast</Caption>
+            <h3 className="mt-2 text-2xl font-bold">El estado de la IA con Rowan Cheung</h3>
+            <p className="mt-2 text-muted-foreground">Análisis semanal de las noticias más importantes de IA, oportunidades reales y cómo aplicarlas.</p>
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <Button variant="hero"><Sparkles className="mr-2" />Suscribirse</Button>
+              <Button variant="outline" asChild><a href="/podcast">Ver episodios</a></Button>
             </div>
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <Card className="p-6">
+              <div className="h-40 w-40 mx-auto rounded-full border-8 border-muted grid place-items-center">
+                <span className="text-sm text-muted-foreground">Gráfico</span>
+              </div>
+              <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+                <li>• Lo esencial de la semana en 20 minutos.</li>
+                <li>• Impacto para negocio, producto y carrera.</li>
+                <li>• Recomendaciones y herramientas prácticas.</li>
+              </ul>
+            </Card>
             <AudioPlaylistCard title="Episodios recientes" subtitle="Actualizado cada semana" episodes={[{ title: 'Cómo la IA está cambiando el trabajo del conocimiento' }, { title: 'Modelos multimodales: casos reales' }, { title: 'Evaluando agentes con métricas prácticas' }]} />
           </div>
         </section>
 
-        {/* Talleres */}
+        {/* Talleres - lista vertical */}
         <section className="container mx-auto px-4 py-12 md:py-16">
-          <SectionHeader title="Aprenda directamente de expertos en IA" subtitle="Talleres en vivo con ejercicios prácticos y Q&A" href="/talleres" />
-          <div className="grid gap-4 md:grid-cols-2">
-            <WorkshopCard title="Prompting aplicado" instructor="Ana García" role="ML Engineer" date="Jue 18:00" duration="2h" />
-            <WorkshopCard title="Automatizaciones con IA" instructor="Carlos Pérez" role="AI Architect" date="Sáb 10:00" duration="2h" />
+          <div className="mx-auto max-w-3xl text-center">
+            <h3 className="text-xl font-semibold">Aprenda directamente de expertos en IA con</h3>
+            <h3 className="text-2xl font-bold"><GradientText>talleres dirigidos por expertos</GradientText></h3>
+            <p className="mt-2 text-muted-foreground">Sesiones en vivo con ejercicios prácticos y Q&A.</p>
+          </div>
+          <div className="mt-8 space-y-4">
+            {[ 
+              { t: 'Prompting aplicado', i: 'Ana García', r: 'ML Engineer', d: 'Jue 18:00', du: '2h' },
+              { t: 'Automatizaciones con IA', i: 'Carlos Pérez', r: 'AI Architect', d: 'Sáb 10:00', du: '2h' },
+              { t: 'RAG en producción', i: 'Lucía Romero', r: 'Data Scientist', d: 'Mié 17:00', du: '90m' },
+              { t: 'Agentes y orquestación', i: 'Marcos Díaz', r: 'AI Engineer', d: 'Lun 19:00', du: '2h' }
+            ].map((w, idx) => (
+              <Card key={idx} className="p-4">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="min-w-0">
+                    <div className="font-semibold">{w.t}</div>
+                    <div className="text-sm text-muted-foreground">{w.i} · {w.r}</div>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <span>{w.d}</span>
+                    <span>•</span>
+                    <span>{w.du}</span>
+                  </div>
+                  <div>
+                    <Button size="sm" asChild>
+                      <a href="/talleres">Registrarme</a>
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Button variant="secondary" asChild>
+              <a href="/talleres">Ver todos los talleres</a>
+            </Button>
           </div>
         </section>
 
-        {/* Universidad - bloque oscuro */}
-        <section className="relative overflow-hidden bg-foreground text-background">
+        {/* Universidad - bloque claro con 4 tarjetas */}
+        <section className="relative overflow-hidden bg-background">
           <div className="container mx-auto px-4 py-16">
             <div className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/80">IA al Día University</div>
-              <h3 className="mt-3 text-3xl font-bold md:text-4xl">Capacitación en IA para el futuro del trabajo.</h3>
-              <p className="mt-2 text-white/80">Cursos, guías, talleres y comunidad para dominar IA aplicada a negocio y producto.</p>
+              <Caption>The Rundown University</Caption>
+              <h3 className="mt-2 text-3xl font-bold md:text-4xl">Capacitación en IA para el futuro del trabajo.</h3>
+              <p className="mt-2 text-muted-foreground">Cursos, guías, talleres y comunidad para dominar IA aplicada a negocio y producto.</p>
               <div className="mt-5 flex items-center justify-center gap-3">
-                <Button variant="hero">Comenzar la ruta</Button>
-                <Button variant="outline" className="border-white/30 text-white">Saber más</Button>
+                <Button variant="hero">Comenzar prueba gratis</Button>
+                <Button variant="outline">Saber más</Button>
               </div>
             </div>
             <div className="mt-10 grid gap-6 md:grid-cols-2">
-              <FeatureTile title="Cursos de IA" description="Obtén acceso ilimitado a todos nuestros cursos de IA, actuales y futuros, específicos de cada sector durante tu suscripción. Cada curso incluye una certificación." Icon={BookOpen} />
-              <FeatureTile title="Guías diarias" description="Para seguir el ritmo de la IA, nuestro equipo publica a diario guías de implementación. Nuestra biblioteca contiene más de 300 casos prácticos para automatizar el trabajo en el mundo real." Icon={LayoutDashboard} />
-              <FeatureTile title="Talleres" description="Únase a sesiones interactivas semanales en vivo con líderes de la industria que están a la vanguardia de la IA para obtener orientación de implementación práctica y conocimientos exclusivos." Icon={Users} />
-              <FeatureTile title="Comunidad" description="Conéctate con una comunidad exclusiva de profesionales que priorizan la IA y trabajan con ella de forma más inteligente. Descubre cómo los pioneros la utilizan en su trabajo y sus negocios." Icon={MessageSquare} />
+              <Card className="p-6">
+                <div className="flex items-start gap-3">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-semibold">Cursos de IA</div>
+                    <p className="text-sm text-muted-foreground">Acceso a todos los cursos actuales y futuros, con certificación.</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-start gap-3">
+                  <LayoutDashboard className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-semibold">Guías diarias</div>
+                    <p className="text-sm text-muted-foreground">Más de 300 casos prácticos para implementar IA en tu trabajo.</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-start gap-3">
+                  <Users className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-semibold">Talleres</div>
+                    <p className="text-sm text-muted-foreground">Sesiones en vivo con líderes de la industria y Q&A.</p>
+                  </div>
+                </div>
+              </Card>
+              <Card className="p-6">
+                <div className="flex items-start gap-3">
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-semibold">Comunidad</div>
+                    <p className="text-sm text-muted-foreground">Conecta con profesionales que aplican IA a diario.</p>
+                  </div>
+                </div>
+              </Card>
             </div>
           </div>
         </section>
+
+
       </main>
 
       <footer className="border-t border-border/50 bg-background">
