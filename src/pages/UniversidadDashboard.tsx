@@ -48,6 +48,8 @@ export default function UniversidadDashboard() {
     setActiveSection(itemId);
     if (itemId === 'courses') {
       navigate('/universidad/cursos');
+    } else if (itemId === 'guides') {
+      navigate('/universidad/guias');
     }
   };
 
