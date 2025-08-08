@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Users, Calendar, Clock, Star, Play } from "lucide-react";
+import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network } from "lucide-react";
 import Header from "@/components/shared/Header";
 
 export default function Universidad() {
@@ -125,26 +125,78 @@ export default function Universidad() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-slate-50">
+      {/* Problem & Solution Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-slate-900 mb-2">5,000+</div>
-              <div className="text-slate-600">Estudiantes Activos</div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight">
+              El mundo de la IA avanza demasiado rápido como para navegarlo solo.
+            </h2>
+            <p className="text-xl text-slate-700 mb-8 font-semibold">
+              El potencial de la IA es innegable.
+            </p>
+            <div className="text-lg text-slate-600 mb-8 leading-relaxed space-y-4">
+              <p>
+                Pero la mayoría de los profesionales se atascan intentando comprender un sinfín de herramientas, tutoriales obsoletos y jerga técnica, sin una guía clara sobre qué funciona realmente para sus necesidades específicas.
+              </p>
+              <p>
+                Entonces, esa sobrecarga e incertidumbre les impide implementar la IA en su trabajo.
+              </p>
+              <p className="font-semibold text-slate-800">
+                <span className="text-slate-900">The</span><br />
+                <span className="text-slate-900">Rundown AI University</span> ofrece una experiencia de aprendizaje personalizada, dirigida por expertos, que se adapta a su apretada agenda.
+              </p>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-slate-900 mb-2">95%</div>
-              <div className="text-slate-600">Tasa de Finalización</div>
+
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-2 gap-8 mt-16 mb-12">
+              <Card className="p-8 text-left hover:shadow-lg transition-shadow border-2 border-slate-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <Settings className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Crea tu propio camino</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Complete un cuestionario rápido para desbloquear un <span className="text-purple-600 font-semibold">plan de estudios personalizado</span> basado en su industria, estilo de aprendizaje y nivel de experiencia que lo ayudará a destacarse del resto.
+                </p>
+              </Card>
+
+              <Card className="p-8 text-left hover:shadow-lg transition-shadow border-2 border-slate-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <GraduationCap className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Aprenda de los expertos</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Obtenga acceso directo a los fundadores y educadores que están dando forma al futuro de la IA para aprender <span className="text-purple-600 font-semibold">secretos de automatización</span> que no puede encontrar en ningún otro lugar.
+                </p>
+              </Card>
+
+              <Card className="p-8 text-left hover:shadow-lg transition-shadow border-2 border-slate-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <TrendingUp className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Manténgase a la vanguardia</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Aplique cualquiera de nuestras guías paso a paso para implementar las mejores herramientas y flujos de trabajo de IA en 15 minutos o menos, con nuevas guías creadas todos los días para garantizar que <span className="text-purple-600 font-semibold">nunca se quede atrás</span>.
+                </p>
+              </Card>
+
+              <Card className="p-8 text-left hover:shadow-lg transition-shadow border-2 border-slate-100">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                  <Network className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">Aproveche nuestra red</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Benefíciese de flujos de trabajo generados de manera colectiva por una comunidad de más de 1 millón de profesionales y de descuentos en herramientas de IA líderes que <span className="text-purple-600 font-semibold">cubren de inmediato el costo de su membresía</span>.
+                </p>
+              </Card>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-slate-900 mb-2">4.8/5</div>
-              <div className="text-slate-600">Valoración Promedio</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-slate-900 mb-2">24/7</div>
-              <div className="text-slate-600">Soporte Disponible</div>
-            </div>
+
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg mt-8"
+            >
+              Desbloquea mi recorrido de aprendizaje personalizado
+            </Button>
           </div>
         </div>
       </section>
