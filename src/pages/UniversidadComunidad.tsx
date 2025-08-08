@@ -100,6 +100,19 @@ export default function UniversidadComunidad() {
     }
   ];
 
+  // Role definitions with emojis
+  const roleConfig = {
+    'expert': { badge: '🏆 Experto IA', color: 'bg-purple-600', crown: true },
+    'moderator': { badge: '🛡️ Moderador', color: 'bg-red-600', crown: false },
+    'mentor': { badge: '⭐ Mentor Verificado', color: 'bg-yellow-600', crown: false },
+    'premium': { badge: '🚀 Miembro Premium', color: 'bg-indigo-600', crown: false },
+    'instructor': { badge: '📚 Instructor', color: 'bg-green-600', crown: false },
+    'top-contributor': { badge: '🔥 Contribuidor Top', color: 'bg-orange-600', crown: false },
+    'founder': { badge: '🌟 Miembro Fundador', color: 'bg-pink-600', crown: false },
+    'member': { badge: null, color: 'bg-blue-600', crown: false },
+    'guest': { badge: null, color: 'bg-gray-600', crown: false }
+  };
+
   const messages = [
     {
       id: 1,
@@ -112,7 +125,7 @@ export default function UniversidadComunidad() {
     },
     {
       id: 2,
-      user: { name: 'Cimfin Lyle Kruger', avatar: 'CK', role: 'expert', badge: 'Experto IA' },
+      user: { name: 'Cimfin Lyle Kruger', avatar: 'CK', role: 'expert' },
       content: '¡Hola Vish! ¡Bienvenido! ¿Cuál es tu herramienta de IA favorita?',
       timestamp: '06:35',
       date: '3 de junio de 2025',
@@ -121,7 +134,7 @@ export default function UniversidadComunidad() {
     },
     {
       id: 3,
-      user: { name: 'Cimfin Lyle Kruger', avatar: 'CK', role: 'expert', badge: 'Experto IA' },
+      user: { name: 'Ana García', avatar: 'AG', role: 'moderator' },
       content: '¡Feliz lunes! Si hay algún flujo de trabajo, caso de uso o herramienta específica sobre la que te gustaría que creáramos guías o talleres, por favor, indícalo como respuesta en este hilo. :)',
       timestamp: '14:22',
       date: '5 de junio de 2025',
@@ -130,7 +143,7 @@ export default function UniversidadComunidad() {
     },
     {
       id: 4,
-      user: { name: 'Freddie', avatar: 'F', role: 'member' },
+      user: { name: 'Freddie', avatar: 'F', role: 'premium' },
       content: 'Hola a todos. Me preguntaba si alguien tiene experiencia en configurar agentes de IA para gestionar renovaciones de contratos en el sector SaaS.',
       timestamp: '16:23',
       date: '20 de junio de 2025',
@@ -139,7 +152,7 @@ export default function UniversidadComunidad() {
     },
     {
       id: 5,
-      user: { name: 'Invitado', avatar: 'I', role: 'guest' },
+      user: { name: 'Carlos Ruiz', avatar: 'CR', role: 'instructor' },
       content: 'Me encantaría ver una guía sobre el enriquecimiento de datos y leads a gran escala. Utilizo varias herramientas (ZoomInfo, RocketReach, etc.), pero me gustaría ver cómo otros lo hacen con IA. Por ejemplo, tengo entre 200 y 300 empresas o contactos que quiero enriquecer para obtener más información.',
       timestamp: '04:19',
       date: '20 de junio de 2025',
@@ -148,7 +161,7 @@ export default function UniversidadComunidad() {
     },
     {
       id: 6,
-      user: { name: 'Elias Novak', avatar: 'EN', role: 'member' },
+      user: { name: 'Elias Novak', avatar: 'EN', role: 'top-contributor' },
       content: 'En IA para ventas, ¿cómo se automatiza el alcance de ventas personalizado a gran escala? ¿Y qué es lo más difícil de mantener?',
       timestamp: '08:17',
       date: '1 de agosto de 2025',
@@ -157,12 +170,21 @@ export default function UniversidadComunidad() {
     },
     {
       id: 7,
-      user: { name: 'Cimfin Lyle Kruger', avatar: 'CK', role: 'expert', badge: 'Experto IA' },
+      user: { name: 'María Founder', avatar: 'MF', role: 'founder' },
       content: 'He escuchado mucho sobre "¿Cuál es la mejor herramienta de IA para presentaciones?". Hemos probado Gamma, Beautiful AI y Napkin AI. ¿Qué has usado que te permita afirmar con seguridad que es como el cursor para presentaciones?',
       timestamp: '16:52',
       date: '3 de agosto de 2025',
       reactions: [{ emoji: '💡', count: 1 }],
       replies: 4
+    },
+    {
+      id: 8,
+      user: { name: 'Dr. López', avatar: 'DL', role: 'mentor' },
+      content: 'Para los nuevos miembros: he creado una lista curada de las mejores herramientas de IA por categoría. La compartiré en el canal de recursos esta semana.',
+      timestamp: '10:30',
+      date: '5 de agosto de 2025',
+      reactions: [{ emoji: '🙌', count: 8 }, { emoji: '📚', count: 3 }],
+      replies: 12
     }
   ];
 
@@ -347,13 +369,11 @@ export default function UniversidadComunidad() {
                 <div className="flex gap-4 hover:bg-neutral-800/50 p-3 rounded-lg transition-colors">
                   <div className="relative">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold ${
-                      message.user.role === 'expert' ? 'bg-purple-600' :
-                      message.user.role === 'guest' ? 'bg-gray-600' :
-                      'bg-blue-600'
+                      roleConfig[message.user.role]?.color || 'bg-blue-600'
                     }`}>
                       {message.user.avatar}
                     </div>
-                    {message.user.role === 'expert' && (
+                    {roleConfig[message.user.role]?.crown && (
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-purple-600 rounded-full flex items-center justify-center">
                         <Crown className="w-2 h-2 text-white" />
                       </div>
@@ -363,9 +383,9 @@ export default function UniversidadComunidad() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-semibold">{message.user.name}</span>
-                      {message.user.badge && (
-                        <Badge variant="secondary" className="bg-purple-600 text-white text-xs">
-                          {message.user.badge}
+                      {roleConfig[message.user.role]?.badge && (
+                        <Badge variant="secondary" className="bg-neutral-600 text-white text-xs">
+                          {roleConfig[message.user.role].badge}
                         </Badge>
                       )}
                       <span className="text-xs text-neutral-400">{message.timestamp}</span>
