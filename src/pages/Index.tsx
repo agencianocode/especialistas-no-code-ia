@@ -157,18 +157,203 @@ export default function Index() {
           </Tabs>
         </section>
 
-        {/* Guías densas */}
+        {/* Guías */}
         <section id="guias" className="container mx-auto px-4 py-12 md:py-16">
-          <SectionHeader title="Guías" subtitle="Aprenda conceptos clave de IA con ejemplos prácticos." href="/guias" />
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {dummyGuides.map((g, i) => (
-              <Card key={i} className="hover:shadow-[var(--shadow-elevated)] transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-base">{g}</CardTitle>
-                  <CardDescription>Lectura de 5–8 minutos</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+          <div className="mx-auto max-w-4xl text-center mb-8">
+            <h2 className="text-4xl font-bold mb-6">Guías</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Recopilamos los principales casos de uso de IA del mundo real entre nuestra audiencia de más de 1 millón de primeros usuarios y creamos guías diarias sobre exactamente cómo puede copiarlos y aplicarlos a su trabajo.
+            </p>
+          </div>
+          
+          {/* Filtros por categorías */}
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <Chip selected>Todo</Chip>
+            <Chip>👨‍💻 Codificación</Chip>
+            <Chip>📈 Marketing</Chip>
+            <Chip>✏️ Creador de contenido</Chip>
+          </div>
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <Chip>📚 Educador</Chip>
+            <Chip>💼 Ventas</Chip>
+            <Chip>🎨 Diseño</Chip>
+            <Chip>📊 Análisis de datos</Chip>
+          </div>
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <Chip>📋 Gestión de proyectos</Chip>
+            <Chip>🤝 Consultante</Chip>
+            <Chip>💰 Finanzas</Chip>
+            <Chip>🏛️ Gobierno</Chip>
+          </div>
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <Chip>🏥 Cuidado de la salud</Chip>
+            <Chip>⚖️ Legal</Chip>
+            <Chip>👥 Reclutamiento de RRHH</Chip>
+          </div>
+          <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
+            <Chip>🎓 Alumno</Chip>
+            <Chip>📋 General</Chip>
+            <Chip>🏢 Operaciones comerciales</Chip>
+          </div>
+
+          {/* Grid de guías */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 p-4">
+                <div className="h-full w-full rounded bg-slate-900 flex items-center justify-center">
+                  <div className="text-white text-xs">🎬 Video Editor</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Cómo intercambiar productos en cualquier video con Kling AI</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Creador de contenido</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Diseño</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Marketing</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 p-4">
+                <div className="h-full w-full rounded bg-white border flex items-center justify-center">
+                  <div className="text-gray-600 text-xs">📝 Legal Assistant</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Crea asistentes legales especializados con Grok Workspaces</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Legal</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Consultante</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Gestión de proyectos</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 p-4">
+                <div className="h-full w-full rounded bg-slate-800 flex items-center justify-center">
+                  <div className="text-white text-xs">💻 Terminal</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Convierte tu terminal en un agente de codificación de IA con OpenAI Codex CLI</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Codificación</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Educador</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Alumno</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-orange-100 to-red-200 p-4">
+                <div className="h-full w-full rounded bg-white border flex items-center justify-center">
+                  <div className="text-gray-600 text-xs">🤖 AI Assistant</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Prepárese para reuniones al instante con el asistente de inteligencia artificial de Claude</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Gestión de proyectos</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Análisis de datos</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-pink-100 to-red-200 p-4">
+                <div className="h-full w-full rounded bg-white border flex items-center justify-center">
+                  <div className="text-gray-600 text-xs">📧 Email Marketing</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Automatice su alcance de ventas con correos electrónicos personalizados</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Ventas</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Marketing</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 p-4">
+                <div className="h-full w-full rounded bg-slate-800 flex items-center justify-center text-white">
+                  <div className="text-xs">N</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Investigue de forma más inteligente con la función de descubrimiento web de NotebookLM</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Educador</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Alumno</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Análisis de datos</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-orange-100 to-red-200 p-4">
+                <div className="h-full w-full rounded bg-white border flex items-center justify-center">
+                  <div className="text-gray-600 text-xs">🔥 Firebase</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Cree aplicaciones web completas sin codificar con Firebase Studio</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Diseño</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Codificación</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Educador</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-[var(--shadow-elevated)] transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 p-4">
+                <div className="h-full w-full rounded bg-white border flex items-center justify-center">
+                  <div className="text-blue-600 text-xs">📊 Google Sheets</div>
+                </div>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base leading-tight">Transforme sus hojas de cálculo con fórmulas de IA en Hojas de cálculo de Google</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-1 mb-2">
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Análisis de datos</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Creador de contenido</span>
+                  <span className="text-xs bg-muted px-2 py-0.5 rounded">Codificación</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Dr. Álvaro Cintas</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Ver todas las guías */}
+          <div className="text-center">
+            <Button variant="link" className="text-lg" asChild>
+              <a href="/guias">Ver todas las guías →</a>
+            </Button>
           </div>
         </section>
 
