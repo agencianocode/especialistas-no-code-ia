@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Users, Calendar, Clock, Star, Play } from "lucide-react";
+import Header from "@/components/shared/Header";
 
 export default function Universidad() {
   const ld = {
@@ -70,6 +71,8 @@ export default function Universidad() {
   return (
     <div className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      
+      <Header />
       
       {/* Hero Section */}
       <section className="bg-slate-900 text-white">
