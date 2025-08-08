@@ -78,24 +78,48 @@ export default function Universidad() {
       <section className="bg-slate-900 text-white">
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-purple-600 hover:bg-purple-700">
-              Universidad de IA
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            {/* Logo TR University */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-10 h-10 bg-white rounded flex items-center justify-center mr-3">
+                <span className="text-slate-900 font-bold">TR</span>
+              </div>
+              <span className="text-white text-xl font-semibold">
+                The Rundown <span className="text-purple-400">University</span>
+              </span>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Educación en IA<br />
-              <span className="text-purple-400">Personalizada para el</span><br />
-              Futuro del Trabajo
+              personalizada para el<br />
+              futuro del trabajo.
             </h1>
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Únete a más de 5,000 profesionales que ya están transformando sus carreras con nuestros cursos especializados en inteligencia artificial.
+            <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+              Accede a certificaciones específicas de la industria, cientos de guías paso a paso y talleres de expertos en vivo para acelerar su carrera.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
-                Comenzar Ahora
-              </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
-                Ver Demo Gratuito
-              </Button>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg"
+            >
+              Pruébalo gratis durante 14 días
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Logos Section */}
+      <section className="bg-slate-900 py-12 border-t border-slate-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-slate-400 mb-8">
+              Con la confianza de profesionales y socios de las principales empresas de inteligencia artificial:
+            </p>
+            <div className="flex items-center justify-center space-x-12 opacity-60">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-8 filter brightness-0 invert" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" className="h-8 filter brightness-0 invert" />
+              <div className="text-white font-semibold text-xl">cisco</div>
+              <div className="text-white font-semibold text-xl">HubSpot</div>
+              <div className="text-white font-bold text-2xl">IBM</div>
+              <div className="text-white font-semibold text-xl">Microsoft</div>
             </div>
           </div>
         </div>
