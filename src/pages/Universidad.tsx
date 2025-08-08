@@ -97,7 +97,7 @@ export default function Universidad() {
       </section>
 
       {/* Company Logos Section */}
-      <section className={`py-12 border-t transition-all duration-500 ${isScrolled ? 'border-slate-200 bg-white' : 'border-slate-800 bg-neutral-900'}`}>
+      <section className={`py-12 transition-all duration-500 ${isScrolled ? 'bg-white' : 'bg-neutral-900'}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className={`mb-8 transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-slate-50'}`}>
