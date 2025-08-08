@@ -423,53 +423,88 @@ export default function Index() {
         </section>
       </main>
 
-      <footer className="border-t border-border/50">
-        <div className="container mx-auto px-4 py-10">
-          <div className="grid gap-10 md:grid-cols-4">
+      <footer className="border-t border-border/50 bg-background">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid gap-8 md:grid-cols-4">
             <div>
-              <h4 className="font-semibold">IA al Día</h4>
-              <p className="mt-2 text-sm text-muted-foreground">Aprende IA con resúmenes claros en 5 minutos.</p>
-              <form onSubmit={onSubscribe} className="mt-4 flex w-full max-w-md items-center gap-2 rounded-md border border-border bg-card p-2">
-                <label htmlFor="email-footer" className="sr-only">Correo electrónico</label>
-                <Input id="email-footer" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-10 border-0 bg-transparent focus-visible:ring-0" />
-                <Button type="submit" variant="hero">Suscribirse</Button>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-background font-bold text-xs">
+                  RR
+                </div>
+                <span className="font-bold">The Rundown</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6 max-w-xs">
+                Entérate de las últimas noticias sobre IA, comprenda su importancia y aprenda a aplicarla en tu trabajo. Únete a más de 1.000.000 de lectores de empresas como Apple, OpenAI y la NASA.
+              </p>
+              <form onSubmit={onSubscribe} className="flex w-full max-w-sm items-center gap-2 rounded-md border border-border bg-background p-1">
+                <label htmlFor="email-footer" className="sr-only">Dirección de correo electrónico</label>
+                <Input 
+                  id="email-footer" 
+                  type="email" 
+                  required 
+                  placeholder="Dirección de correo electrónico" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  className="h-10 border-0 bg-transparent text-sm focus-visible:ring-0" 
+                />
+                <Button type="submit" size="sm" className="bg-foreground text-background hover:bg-foreground/90">
+                  Suscribir ✈
+                </Button>
               </form>
             </div>
+            
             <div>
-              <h5 className="mb-3 text-sm font-semibold">Contenido</h5>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/articulos">Artículos</a></li>
-                <li><a href="/guias">Guías</a></li>
-                <li><a href="/herramientas">Herramientas</a></li>
-                <li><a href="/podcast">Podcast</a></li>
+              <h5 className="mb-4 font-semibold">Manténgase actualizado</h5>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><a href="/articulos" className="hover:text-foreground transition-colors">Artículos</a></li>
+                <li><a href="/podcast" className="hover:text-foreground transition-colors">Podcast</a></li>
+                <li><a href="/guias" className="hover:text-foreground transition-colors">Guías</a></li>
+                <li><a href="/herramientas" className="hover:text-foreground transition-colors">Herramientas</a></li>
+                <li><a href="/talleres" className="hover:text-foreground transition-colors">Talleres</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Bolsa de trabajo de IA</a></li>
               </ul>
             </div>
+            
             <div>
-              <h5 className="mb-3 text-sm font-semibold">Formación</h5>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/talleres">Talleres</a></li>
-                <li><a href="/universidad">Universidad</a></li>
+              <h5 className="mb-4 font-semibold">Universidad de IA</h5>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">IA para empresas</a></li>
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">IA para codificación</a></li>
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">IA para la creación de contenido</a></li>
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">IA para educación</a></li>
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">IA para marketing</a></li>
+                <li><a href="/universidad" className="hover:text-foreground transition-colors">Todos los cursos de certificación</a></li>
               </ul>
             </div>
+            
             <div>
-              <h5 className="mb-3 text-sm font-semibold">Legal</h5>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#">Privacidad</a></li>
-                <li><a href="#">Términos</a></li>
-                <li><a href="#">Contacto</a></li>
+              <h5 className="mb-4 font-semibold">Compañía</h5>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-colors">Anunciar</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Carreras</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Contáctenos</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">política de privacidad</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Términos y condiciones</a></li>
               </ul>
             </div>
           </div>
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-6 md:flex-row">
-            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} IA al Día · Todos los derechos reservados</p>
-            <nav className="flex gap-4 text-sm text-muted-foreground">
-              <a href="/articulos">Artículos</a>
-              <a href="/guias">Guías</a>
-              <a href="/herramientas">Herramientas</a>
-              <a href="/podcast">Podcast</a>
-              <a href="/talleres">Talleres</a>
-              <a href="/universidad">Universidad</a>
-            </nav>
+          
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row">
+            <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} The Rundown AI, Inc. Todos los derechos reservados.</p>
+            <div className="flex gap-4">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <span className="sr-only">Twitter</span>
+                <span className="text-lg">X</span>
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <span className="sr-only">Instagram</span>
+                <span className="text-lg">📷</span>
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <span className="sr-only">LinkedIn</span>
+                <span className="text-lg">💼</span>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
