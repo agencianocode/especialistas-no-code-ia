@@ -4,80 +4,61 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Users, Calendar, Clock, Star, Play, Settings, GraduationCap, TrendingUp, Network, Quote, Plus, Minus } from "lucide-react";
 import Header from "@/components/shared/Header";
 import { useState } from "react";
-
 export default function Universidad() {
   const ld = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Universidad — IA al Día",
+    name: "Universidad — IA al Día"
   };
-
-  const courses = [
-    {
-      title: "Introducción a la IA",
-      description: "Fundamentos esenciales para comenzar en el mundo de la inteligencia artificial",
-      duration: "4 semanas",
-      students: "2,300+",
-      level: "Principiante"
-    },
-    {
-      title: "Machine Learning Aplicado",
-      description: "Técnicas prácticas de aprendizaje automático para proyectos reales",
-      duration: "6 semanas", 
-      students: "1,800+",
-      level: "Intermedio"
-    },
-    {
-      title: "IA Generativa y LLMs",
-      description: "Domina las herramientas más avanzadas de generación de contenido",
-      duration: "8 semanas",
-      students: "1,500+", 
-      level: "Avanzado"
-    },
-    {
-      title: "IA para Negocios",
-      description: "Estrategias de implementación de IA en entornos empresariales",
-      duration: "5 semanas",
-      students: "900+",
-      level: "Profesional"
-    }
-  ];
-
-  const features = [
-    "Acceso a todos los cursos actuales y futuros",
-    "Certificación oficial al completar cada curso", 
-    "Sesiones en vivo semanales con expertos",
-    "Comunidad exclusiva de profesionales",
-    "Proyectos prácticos y casos de estudio",
-    "Soporte personalizado del equipo académico"
-  ];
-
-  const testimonials = [
-    {
-      name: "Ana García",
-      role: "Directora de Innovación",
-      company: "TechCorp",
-      content: "Los cursos me permitieron implementar IA en mi empresa con confianza. El contenido es práctico y actualizado.",
-      avatar: "AG"
-    },
-    {
-      name: "Carlos Mendoza", 
-      role: "Data Scientist",
-      company: "StartupAI",
-      content: "La comunidad y las sesiones en vivo son invaluables. Aprendí más en 3 meses que en años por mi cuenta.",
-      avatar: "CM"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+  const courses = [{
+    title: "Introducción a la IA",
+    description: "Fundamentos esenciales para comenzar en el mundo de la inteligencia artificial",
+    duration: "4 semanas",
+    students: "2,300+",
+    level: "Principiante"
+  }, {
+    title: "Machine Learning Aplicado",
+    description: "Técnicas prácticas de aprendizaje automático para proyectos reales",
+    duration: "6 semanas",
+    students: "1,800+",
+    level: "Intermedio"
+  }, {
+    title: "IA Generativa y LLMs",
+    description: "Domina las herramientas más avanzadas de generación de contenido",
+    duration: "8 semanas",
+    students: "1,500+",
+    level: "Avanzado"
+  }, {
+    title: "IA para Negocios",
+    description: "Estrategias de implementación de IA en entornos empresariales",
+    duration: "5 semanas",
+    students: "900+",
+    level: "Profesional"
+  }];
+  const features = ["Acceso a todos los cursos actuales y futuros", "Certificación oficial al completar cada curso", "Sesiones en vivo semanales con expertos", "Comunidad exclusiva de profesionales", "Proyectos prácticos y casos de estudio", "Soporte personalizado del equipo académico"];
+  const testimonials = [{
+    name: "Ana García",
+    role: "Directora de Innovación",
+    company: "TechCorp",
+    content: "Los cursos me permitieron implementar IA en mi empresa con confianza. El contenido es práctico y actualizado.",
+    avatar: "AG"
+  }, {
+    name: "Carlos Mendoza",
+    role: "Data Scientist",
+    company: "StartupAI",
+    content: "La comunidad y las sesiones en vivo son invaluables. Aprendí más en 3 meses que en años por mi cuenta.",
+    avatar: "CM"
+  }];
+  return <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify(ld)
+    }} />
       
       <Header />
       
       {/* Hero Section */}
       <section className="bg-slate-900 text-white">
-        <div className="container mx-auto px-4 py-20">
+        <div className="container mx-auto px-4 py-20 bg-neutral-900">
           <div className="max-w-4xl mx-auto text-center">
             {/* Logo TR University */}
             <div className="flex items-center justify-center mb-8">
@@ -97,10 +78,7 @@ export default function Universidad() {
             <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
               Accede a certificaciones específicas de la industria, cientos de guías paso a paso y talleres de expertos en vivo para acelerar su carrera.
             </p>
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg"
-            >
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg">
               Pruébalo gratis durante 14 días
             </Button>
           </div>
@@ -192,10 +170,7 @@ export default function Universidad() {
               </Card>
             </div>
 
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg mt-8"
-            >
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg mt-8">
               Desbloquea mi recorrido de aprendizaje personalizado
             </Button>
           </div>
@@ -273,9 +248,7 @@ export default function Universidad() {
                 <div className="flex items-center mb-4">
                   <Quote className="w-8 h-8 text-purple-600 mr-3" />
                   <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-slate-600 text-lg mb-6 leading-relaxed">
@@ -409,9 +382,7 @@ export default function Universidad() {
                 <div className="flex items-center mb-4">
                   <Quote className="w-8 h-8 text-purple-600 mr-3" />
                   <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-slate-600 text-lg mb-6 leading-relaxed">
@@ -571,9 +542,7 @@ export default function Universidad() {
                 <div className="flex items-center mb-4">
                   <Quote className="w-8 h-8 text-purple-600 mr-3" />
                   <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-slate-600 text-lg mb-6 leading-relaxed">
@@ -624,9 +593,7 @@ export default function Universidad() {
                 <div className="flex items-center mb-4">
                   <Quote className="w-8 h-8 text-purple-600 mr-3" />
                   <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-slate-600 text-lg mb-6 leading-relaxed">
@@ -656,9 +623,7 @@ export default function Universidad() {
                 <div className="flex items-center mb-4">
                   <Quote className="w-8 h-8 text-purple-600 mr-3" />
                   <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-slate-600 text-lg mb-6 leading-relaxed">
@@ -837,11 +802,7 @@ export default function Universidad() {
                 Entérate de las últimas noticias sobre IA, comprende su importancia y aprende a aplicarla en tu trabajo. Únete a más de 1.000.000 de lectores de empresas como Apple, OpenAI y la NASA.
               </p>
               <div className="flex max-w-md mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="Dirección de correo electrónico" 
-                  className="flex-1 px-4 py-3 border border-slate-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                />
+                <input type="email" placeholder="Dirección de correo electrónico" className="flex-1 px-4 py-3 border border-slate-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-600" />
                 <Button className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-r-lg rounded-l-none">
                   Suscribir
                 </Button>
@@ -895,53 +856,22 @@ export default function Universidad() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
 
 // FAQ Component
 function FAQAccordion() {
   const [openItem, setOpenItem] = useState<number | null>(null);
-
-  const faqItems = [
-    "¿Qué es exactamente The Rundown AI University?",
-    "Soy principiante absoluto en IA. ¿Me ayudará esto?",
-    "¿En qué se diferencia de otros cursos de IA en línea?",
-    "¿Ofrecen certificaciones que pueda agregar a mi currículum?",
-    "¿Puedo deducir esto como gasto a través de la empresa para la que trabajo?",
-    "¿Con qué frecuencia se agrega contenido nuevo a la plataforma?",
-    "¿Qué puedo esperar en los talleres de IA?",
-    "¿Cuánto tiempo necesito dedicar cada semana?",
-    "¿Puedo solicitar cursos o guías específicos?",
-    "¿Sobre qué plataforma se basa The Rundown AI University?",
-    "¿Ofrecen opciones de pago mensual?",
-    "¿Ofrecen una garantía de devolución de dinero?",
-    "¿Cómo cancelo mi plan?",
-    "¿Cómo puedo obtener ayuda si la necesito?"
-  ];
-
-  return (
-    <div className="space-y-4">
-      {faqItems.map((question, index) => (
-        <div key={index} className="border border-slate-700 rounded-lg">
-          <button
-            className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-800 transition-colors"
-            onClick={() => setOpenItem(openItem === index ? null : index)}
-          >
+  const faqItems = ["¿Qué es exactamente The Rundown AI University?", "Soy principiante absoluto en IA. ¿Me ayudará esto?", "¿En qué se diferencia de otros cursos de IA en línea?", "¿Ofrecen certificaciones que pueda agregar a mi currículum?", "¿Puedo deducir esto como gasto a través de la empresa para la que trabajo?", "¿Con qué frecuencia se agrega contenido nuevo a la plataforma?", "¿Qué puedo esperar en los talleres de IA?", "¿Cuánto tiempo necesito dedicar cada semana?", "¿Puedo solicitar cursos o guías específicos?", "¿Sobre qué plataforma se basa The Rundown AI University?", "¿Ofrecen opciones de pago mensual?", "¿Ofrecen una garantía de devolución de dinero?", "¿Cómo cancelo mi plan?", "¿Cómo puedo obtener ayuda si la necesito?"];
+  return <div className="space-y-4">
+      {faqItems.map((question, index) => <div key={index} className="border border-slate-700 rounded-lg">
+          <button className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-800 transition-colors" onClick={() => setOpenItem(openItem === index ? null : index)}>
             <span className="text-white">{question}</span>
-            {openItem === index ? (
-              <Minus className="w-5 h-5 text-white flex-shrink-0" />
-            ) : (
-              <Plus className="w-5 h-5 text-white flex-shrink-0" />
-            )}
+            {openItem === index ? <Minus className="w-5 h-5 text-white flex-shrink-0" /> : <Plus className="w-5 h-5 text-white flex-shrink-0" />}
           </button>
-          {openItem === index && (
-            <div className="p-4 pt-0 text-slate-300">
+          {openItem === index && <div className="p-4 pt-0 text-slate-300">
               <p>Respuesta para la pregunta: {question}</p>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
+            </div>}
+        </div>)}
+    </div>;
 }
