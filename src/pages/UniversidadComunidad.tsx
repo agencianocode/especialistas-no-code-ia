@@ -40,6 +40,7 @@ import MessageItem from "@/components/shared/MessageItem";
 import MessageThread from "@/components/shared/MessageThread";
 import SearchModal from "@/components/shared/SearchModal";
 import GamificationPanel from "@/components/shared/GamificationPanel";
+import ChannelResources from "@/components/shared/ChannelResources";
 import { GamificationService } from "@/utils/GamificationService";
 
 export default function UniversidadComunidad() {
@@ -50,8 +51,15 @@ export default function UniversidadComunidad() {
   const [threadNotifications, setThreadNotifications] = useState<number[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isGamificationOpen, setIsGamificationOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [userStats, setUserStats] = useState(GamificationService.getUserStats('current_user'));
   const navigate = useNavigate();
+
+  const currentUser = {
+    name: 'fabianiela',
+    avatar: 'F',
+    role: 'member'
+  };
 
   const sidebarItems = [
     { id: 'home', icon: Home, label: 'Hogar' },
@@ -442,6 +450,14 @@ export default function UniversidadComunidad() {
                 >
                   <Search className="w-4 h-4" />
                 </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-neutral-400 hover:text-white"
+                  onClick={() => setIsResourcesOpen(true)}
+                >
+                  <BookOpen className="w-4 h-4" />
+                </Button>
                 <Button variant="ghost" size="sm" className="text-neutral-400">
                   <Bell className="w-4 h-4" />
                 </Button>
@@ -544,6 +560,17 @@ export default function UniversidadComunidad() {
         userId="current_user"
         isOpen={isGamificationOpen}
         onClose={() => setIsGamificationOpen(false)}
+      />
+
+      {/* Channel Resources */}
+      <ChannelResources
+        isOpen={isResourcesOpen}
+        onClose={() => setIsResourcesOpen(false)}
+        channelId={activeChannel}
+        channelName={channelCategories.flatMap(cat => cat.channels).find(ch => ch.id === activeChannel)?.name || 'General'}
+        userRole={currentUser.role}
+        roleConfig={roleConfig}
+        user={currentUser}
       />
     </div>
   );
