@@ -13,6 +13,7 @@ import Talleres from "./pages/Talleres";
 import Universidad from "./pages/Universidad";
 import UniversidadDashboard from "./pages/UniversidadDashboard";
 import UniversidadCursos from "./pages/UniversidadCursos";
+import UniversidadCursoDetalle from "./pages/UniversidadCursoDetalle";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/universidad" element={<Universidad />} />
           <Route path="/universidad/dashboard" element={<UniversidadDashboard />} />
           <Route path="/universidad/cursos" element={<UniversidadCursos />} />
+          <Route path="/universidad/curso/:cursoId" element={<UniversidadCursoDetalle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

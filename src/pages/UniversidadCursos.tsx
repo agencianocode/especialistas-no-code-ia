@@ -329,7 +329,11 @@ export default function UniversidadCursos() {
         {/* Courses Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
-            <Card key={course.id} className="bg-neutral-800 border-neutral-700 overflow-hidden hover:bg-neutral-750 transition-colors group">
+            <Card 
+              key={course.id} 
+              className="bg-neutral-800 border-neutral-700 overflow-hidden hover:bg-neutral-750 transition-colors group cursor-pointer"
+              onClick={() => navigate(`/universidad/curso/${course.id}`)}
+            >
               {/* Course Image/Header */}
               <div className={`h-32 bg-gradient-to-br ${course.gradient} relative p-4 flex flex-col justify-between`}>
                 <div className="flex justify-between items-start">
