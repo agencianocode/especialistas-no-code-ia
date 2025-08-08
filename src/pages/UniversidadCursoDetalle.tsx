@@ -274,14 +274,15 @@ export default function UniversidadCursoDetalle() {
                   <CardContent className="pt-0">
                     <div className="space-y-3">
                       {module.lessons.map((lesson) => (
-                        <div 
-                          key={lesson.id} 
-                          className={`flex items-center gap-4 p-3 rounded-lg transition-colors cursor-pointer ${
-                            lesson.completed 
-                              ? 'bg-green-500/10 border border-green-500/20' 
-                              : 'bg-neutral-700/50 hover:bg-neutral-700'
-                          }`}
-                        >
+                      <div 
+                        key={lesson.id} 
+                        className={`flex items-center gap-4 p-3 rounded-lg transition-colors cursor-pointer ${
+                          lesson.completed 
+                            ? 'bg-green-500/10 border border-green-500/20' 
+                            : 'bg-neutral-700/50 hover:bg-neutral-700'
+                        }`}
+                        onClick={() => navigate(`/universidad/curso/${courseData.id}/leccion/${lesson.id}`)}
+                      >
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                             lesson.completed 
                               ? 'bg-green-500 text-white' 
