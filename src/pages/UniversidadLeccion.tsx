@@ -83,33 +83,50 @@ export default function UniversidadLeccion() {
     courseTitle: "IA para consultoría",
     duration: "12:00",
     description: "En esta lección aprenderás los conceptos fundamentales de cómo la inteligencia artificial puede transformar el trabajo de consultoría moderna.",
-    transcript: [
-      {
-        time: "0:00",
-        speaker: "Instructor",
-        text: "Bienvenidos a esta lección sobre IA en consultoría. Hoy vamos a explorar cómo la inteligencia artificial está revolucionando la forma en que trabajamos como consultores."
-      },
-      {
-        time: "0:30",
-        speaker: "Instructor", 
-        text: "La IA nos permite automatizar análisis de datos, generar insights más profundos y crear presentaciones de manera más eficiente."
-      },
-      {
-        time: "1:15",
-        speaker: "Instructor",
-        text: "Veamos algunos ejemplos prácticos de cómo ChatGPT y otras herramientas pueden acelerar nuestro trabajo diario."
-      },
-      {
-        time: "2:00",
-        speaker: "Instructor",
-        text: "Primero, hablemos sobre el análisis de datos. La IA puede procesar grandes volúmenes de información en segundos."
-      },
-      {
-        time: "3:30",
-        speaker: "Instructor",
-        text: "Segundo, la generación de reportes. Podemos crear documentos profesionales usando plantillas inteligentes."
-      }
-    ],
+    content: {
+      title: "Ingeniería rápida para consultoría",
+      objectives: [
+        "Comprenda cómo elaborar indicaciones efectivas específicamente para tareas de consultoría como investigación, análisis y creación de resultados.",
+        "Aprenda marcos estructurados, como la fórmula de seis pasos, para obtener constantemente resultados mejores y más confiables de la IA.",
+        "Reconocer patrones de indicaciones comunes adaptados a desafíos de consultoría específicos.",
+        "Aplicar técnicas avanzadas de estímulo para abordar escenarios estratégicos o analíticos complejos.",
+        "Desarrolle estrategias para construir su propia biblioteca de indicaciones de consultoría efectivas."
+      ],
+      sections: [
+        {
+          title: "Introducción",
+          content: "El módulo anterior mostró cómo herramientas como ChatGPT transformaron la forma de trabajar de los consultores. Pero pronto se dieron cuenta de que obtener resultados útiles, precisos y listos para el cliente de la IA requiere más que simplemente hacer una pregunta. Requiere la capacidad constante de formular la pregunta correcta de la manera correcta.\n\nLa ingeniería de indicaciones es la habilidad de redactar instrucciones claras, específicas y contextualizadas para guiar a los modelos de IA hacia el resultado deseado. Para los consultores, desarrollar esta habilidad es clave para usar la IA eficazmente, manteniendo altos estándares de calidad, precisión y relevancia. Este módulo se centra en métodos prácticos para redactar indicaciones eficaces, adaptadas al trabajo de consultoría."
+        },
+        {
+          title: "Elementos fundamentales de una consultoría eficaz",
+          content: "Toda propuesta de consultoría eficaz requiere ingredientes específicos para guiar la IA con precisión. Omitir elementos clave puede generar consejos genéricos, análisis inexactos o resultados inadecuados para el trabajo del cliente.",
+          subsections: [
+            {
+              title: "1. Tarea y objetivo claros",
+              content: "Sea explícito sobre lo que necesita que haga la IA. ¿Está resumiendo una investigación, generando ideas, redactando un correo electrónico, analizando datos o describiendo una presentación?",
+              examples: [
+                {
+                  basic: "Ideas for client workshop.",
+                  improved: "Generate a detailed agenda for a 3-hour client workshop focused on identifying cost-saving opportunities in their supply chain. Include timings, key activities, and desired outcomes for each section."
+                }
+              ],
+              importance: "Las solicitudes imprecisas generan resultados imprecisos. Definir claramente la tarea y el objetivo específico (p. ej., \"agenda para taller de ahorro de costes\") centra la atención de la IA y garantiza que el resultado sea relevante para su necesidad inmediata."
+            },
+            {
+              title: "2. Contexto suficiente",
+              content: "Los modelos de IA carecen del conocimiento previo que usted tiene sobre el cliente, la industria o el proyecto. Proporcione contexto esencial.",
+              examples: [
+                {
+                  basic: "Analyze market trends.",
+                  improved: "Analyze key market trends for the European electric vehicle charging infrastructure sector over the next 5 years. Consider technological advancements, regulatory changes, and competitive landscape shifts. Our client is a new entrant planning a B2B offering."
+                }
+              ],
+              importance: "El contexto (industria, situación del cliente, objetivos del proyecto) permite que la IA adapte su respuesta, haciéndola significativamente más relevante y reveladora que la información genérica."
+            }
+          ]
+        }
+      ]
+    },
     keyPoints: [
       "La IA automatiza tareas repetitivas en consultoría",
       "Permite análisis de datos más profundos y rápidos", 
@@ -372,37 +389,107 @@ export default function UniversidadLeccion() {
               </CardContent>
             </Card>
 
-            {/* Transcript */}
-            <Card className="bg-neutral-800 border-neutral-700">
+            {/* Lesson Content */}
+            <Card className="bg-neutral-800 border-neutral-700 mb-6">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">Transcripción</CardTitle>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={() => setShowTranscript(!showTranscript)}
-                  >
-                    <ChevronDown className={`w-4 h-4 transition-transform ${showTranscript ? 'rotate-180' : ''}`} />
-                  </Button>
-                </div>
+                <CardTitle className="text-2xl font-bold text-center text-purple-400">
+                  {lessonData.content.title}
+                </CardTitle>
               </CardHeader>
-              {showTranscript && (
-                <CardContent>
-                  <div className="space-y-4 max-h-96 overflow-y-auto">
-                    {lessonData.transcript.map((item, index) => (
-                      <div key={index} className="flex gap-4">
-                        <div className="text-xs text-purple-400 font-mono w-12 flex-shrink-0">
-                          {item.time}
+              <CardContent className="space-y-6">
+                {/* Learning Objectives */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-white">Al finalizar este módulo, usted:</h3>
+                  <ul className="space-y-3">
+                    {lessonData.content.objectives.map((objective, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0" />
+                        <span className="text-neutral-300 leading-relaxed">{objective}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Content Sections */}
+                {lessonData.content.sections.map((section, sectionIndex) => (
+                  <div key={sectionIndex} className="space-y-4">
+                    <h3 className="text-xl font-bold text-white border-b border-neutral-600 pb-2">
+                      {section.title}
+                    </h3>
+                    
+                    <div className="text-neutral-300 leading-relaxed whitespace-pre-line">
+                      {section.content}
+                    </div>
+
+                    {/* Image placeholder for content */}
+                    {sectionIndex === 0 && (
+                      <div className="my-6">
+                        <div className="w-full h-64 bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/20 flex items-center justify-center">
+                          <div className="text-center">
+                            <FileText className="w-12 h-12 text-purple-400 mx-auto mb-2" />
+                            <div className="text-neutral-400">Consultoría (9).png</div>
+                          </div>
                         </div>
-                        <div className="flex-1">
-                          <div className="text-sm font-medium text-neutral-300 mb-1">{item.speaker}</div>
-                          <div className="text-neutral-400">{item.text}</div>
+                      </div>
+                    )}
+
+                    {/* Subsections */}
+                    {section.subsections?.map((subsection, subIndex) => (
+                      <div key={subIndex} className="ml-6 space-y-3 border-l-2 border-purple-500/20 pl-6">
+                        <h4 className="text-lg font-semibold text-purple-300">
+                          {subsection.title}
+                        </h4>
+                        
+                        <div className="text-neutral-300 leading-relaxed">
+                          {subsection.content}
                         </div>
+
+                        {/* Examples */}
+                        {subsection.examples?.map((example, exampleIndex) => (
+                          <div key={exampleIndex} className="bg-neutral-700/50 rounded-lg p-4 space-y-3">
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div>
+                                <div className="text-sm font-medium text-red-400 mb-2">Ejemplo básico:</div>
+                                <div className="bg-red-900/20 border border-red-500/30 rounded p-3 text-sm text-neutral-300">
+                                  "{example.basic}"
+                                </div>
+                              </div>
+                              <div>
+                                <div className="text-sm font-medium text-green-400 mb-2">Ejemplo mejorado:</div>
+                                <div className="bg-green-900/20 border border-green-500/30 rounded p-3 text-sm text-neutral-300">
+                                  "{example.improved}"
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Importance note */}
+                        {subsection.importance && (
+                          <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                            <div className="text-sm font-medium text-blue-400 mb-2">Por qué es importante:</div>
+                            <div className="text-neutral-300 text-sm leading-relaxed">
+                              {subsection.importance}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Screenshots placeholders */}
+                        {subIndex === 0 && (
+                          <div className="my-4">
+                            <div className="w-full h-48 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 rounded-lg border border-cyan-500/20 flex items-center justify-center">
+                              <div className="text-center">
+                                <FileText className="w-10 h-10 text-cyan-400 mx-auto mb-2" />
+                                <div className="text-neutral-400 text-sm">Captura de pantalla del 29/04/2025 a las 13:56.23.png</div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
-                </CardContent>
-              )}
+                ))}
+              </CardContent>
             </Card>
 
             {/* Navigation */}
