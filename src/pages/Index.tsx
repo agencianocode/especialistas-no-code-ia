@@ -65,52 +65,70 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <header className="sticky top-0 z-40 w-full border-b border-border/50 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <header className="sticky top-0 z-40 w-full bg-foreground text-background">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <a href="/" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-glow))] bg-clip-text text-transparent">IA al Día</span>
+          <a href="/" className="flex items-center gap-2 font-bold tracking-tight">
+            <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-foreground font-bold text-sm">
+              RR
+            </div>
+            <span className="text-white">The Rundown</span>
           </a>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="/articulos" className="hover:text-foreground transition-colors">Artículos</a>
-            <a href="/guias" className="hover:text-foreground transition-colors">Guías</a>
-            <a href="/herramientas" className="hover:text-foreground transition-colors">Herramientas</a>
-            <a href="/podcast" className="hover:text-foreground transition-colors">Podcast</a>
-            <a href="/talleres" className="hover:text-foreground transition-colors">Talleres</a>
-            <a href="/universidad" className="hover:text-foreground transition-colors">Universidad</a>
+          <nav className="hidden lg:flex items-center gap-6 text-sm text-white/90">
+            <a href="/universidad" className="hover:text-white transition-colors">Universidad de IA</a>
+            <a href="/articulos" className="hover:text-white transition-colors">Artículos</a>
+            <a href="/guias" className="hover:text-white transition-colors">Guías</a>
+            <a href="/herramientas" className="hover:text-white transition-colors">Herramientas</a>
+            <a href="/podcast" className="hover:text-white transition-colors">Cursos</a>
+            <a href="/talleres" className="hover:text-white transition-colors">Talleres</a>
+            <a href="#" className="hover:text-white transition-colors">Anunciar</a>
           </nav>
           <div className="flex items-center gap-2">
-            <Button variant="soft" size="sm">Iniciar sesión</Button>
-            <Button variant="hero" size="sm">Suscribirse</Button>
+            <Button variant="outline" size="sm" className="border-white/30 text-white hover:bg-white/10">
+              Inicio de sesión de la Universidad →
+            </Button>
           </div>
         </div>
       </header>
 
       <main>
-        {/* Hero oscuro */}
+        {/* Hero */}
         <section className="relative overflow-hidden bg-foreground text-background">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,hsl(var(--primary)/0.25),transparent)]" />
-          <div className="container mx-auto grid gap-6 px-4 py-14 md:py-20">
-            <div className="mx-auto max-w-3xl text-center animate-fade-in">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/80">
-                <Sparkles className="h-3.5 w-3.5" /> Aprenda IA en 5 minutos al día
-              </div>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-6xl">
-                Aprenda IA en <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-glow))]">5 minutos</span> al día.
+          <div className="container mx-auto grid gap-8 px-4 py-20 md:py-28">
+            <div className="mx-auto max-w-4xl text-center animate-fade-in">
+              <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
+                Aprenda IA en <span className="text-[#c855ff]">5</span>
+                <br />
+                <span className="text-[#c855ff]">minutos</span> al día.
               </h1>
-              <p className="mt-4 text-lg text-white/80 md:text-xl">
-                Resúmenes claros, guías prácticas y herramientas seleccionadas. Todo en español.
+              <p className="mt-6 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
+                Obtenga las últimas noticias sobre IA, comprenda por qué es importante y aprenda cómo aplicarla en su trabajo.
               </p>
               {/* Formulario cápsula */}
-              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex w-full max-w-2xl items-center gap-2 rounded-full border border-white/20 bg-white/5 p-2 shadow-sm">
-                <label htmlFor="email" className="sr-only">Correo electrónico</label>
-                <Input id="email" type="email" required placeholder="Tu correo" value={email} onChange={(e) => setEmail(e.target.value)} className="h-12 rounded-full border-0 bg-transparent text-white placeholder:text-white/60 focus-visible:ring-0" />
-                <Button type="submit" variant="hero" size="xl" className="rounded-full px-6">
-                  <Mail className="mr-1.5" /> Suscribirse
+              <form onSubmit={onSubscribe} className="mx-auto mt-8 flex w-full max-w-lg items-center gap-0 rounded-full bg-white p-1 shadow-lg">
+                <label htmlFor="email" className="sr-only">Dirección de correo electrónico</label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  required 
+                  placeholder="Dirección de correo electrónico" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  className="h-12 flex-1 rounded-full border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 px-6" 
+                />
+                <Button type="submit" size="lg" className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-6">
+                  Suscribir ✈
                 </Button>
               </form>
-              <p className="mt-3 text-sm text-white/70">★★★★★ 4.9/5 · Confiado por más de 120,000 lectores</p>
-              {/* Logo cloud */}
-              <LogoCloud logos={logos} />
+              <p className="mt-6 text-sm text-white/70">Únase a más de 1.000.000 de lectores de empresas como:</p>
+              {/* Logo cloud empresas */}
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-8 opacity-60">
+                <span className="text-2xl font-bold text-white">Google</span>
+                <span className="text-2xl font-bold text-white">Meta</span>
+                <span className="text-lg font-bold text-white">cisco</span>
+                <span className="text-xl font-bold text-white">HubSpot</span>
+                <span className="text-2xl font-bold text-white">IBM</span>
+                <span className="text-xl font-bold text-white">Microsoft</span>
+              </div>
             </div>
           </div>
         </section>
