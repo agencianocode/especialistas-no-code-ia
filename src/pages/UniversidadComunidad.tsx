@@ -38,6 +38,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MessageItem from "@/components/shared/MessageItem";
 import MessageThread from "@/components/shared/MessageThread";
+import SearchModal from "@/components/shared/SearchModal";
 
 export default function UniversidadComunidad() {
   const [activeSection, setActiveSection] = useState('community');
@@ -45,6 +46,7 @@ export default function UniversidadComunidad() {
   const [newMessage, setNewMessage] = useState('');
   const [activeThread, setActiveThread] = useState<number | null>(null);
   const [threadNotifications, setThreadNotifications] = useState<number[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const navigate = useNavigate();
 
   const sidebarItems = [
@@ -405,6 +407,14 @@ export default function UniversidadComunidad() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-neutral-400 hover:text-white"
+                  onClick={() => setIsSearchOpen(true)}
+                >
+                  <Search className="w-4 h-4" />
+                </Button>
                 <Button variant="ghost" size="sm" className="text-neutral-400">
                   <Bell className="w-4 h-4" />
                 </Button>
@@ -492,6 +502,15 @@ export default function UniversidadComunidad() {
           </div>
         </div>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        messages={messages}
+        channels={channelCategories.flatMap(cat => cat.channels)}
+        users={[...new Set(messages.map(msg => msg.user.name))]}
+      />
     </div>
   );
 }
