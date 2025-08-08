@@ -97,19 +97,19 @@ export default function Universidad() {
       </section>
 
       {/* Company Logos Section */}
-      <section className="py-12 border-t border-slate-800 bg-neutral-900">
+      <section className={`py-12 border-t transition-all duration-500 ${isScrolled ? 'border-slate-200 bg-white' : 'border-slate-800 bg-neutral-900'}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="mb-8 text-slate-50">
+            <p className={`mb-8 transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-slate-50'}`}>
               Con la confianza de profesionales y socios de las principales empresas de inteligencia artificial:
             </p>
             <div className="flex items-center justify-center space-x-12 opacity-60">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-8 filter brightness-0 invert" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" className="h-8 filter brightness-0 invert" />
-              <div className="text-white font-semibold text-xl">cisco</div>
-              <div className="text-white font-semibold text-xl">HubSpot</div>
-              <div className="text-white font-bold text-2xl">IBM</div>
-              <div className="text-white font-semibold text-xl">Microsoft</div>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className={`h-8 transition-all duration-500 ${isScrolled ? 'filter-none' : 'filter brightness-0 invert'}`} />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" className={`h-8 transition-all duration-500 ${isScrolled ? 'filter-none' : 'filter brightness-0 invert'}`} />
+              <div className={`font-semibold text-xl transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-white'}`}>cisco</div>
+              <div className={`font-semibold text-xl transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-white'}`}>HubSpot</div>
+              <div className={`font-bold text-2xl transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-white'}`}>IBM</div>
+              <div className={`font-semibold text-xl transition-colors duration-500 ${isScrolled ? 'text-slate-600' : 'text-white'}`}>Microsoft</div>
             </div>
           </div>
         </div>
