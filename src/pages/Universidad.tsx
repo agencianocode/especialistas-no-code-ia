@@ -75,7 +75,7 @@ export default function Universidad() {
               personalizada para el<br />
               futuro del trabajo.
             </h1>
-            <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-white">
               Accede a certificaciones específicas de la industria, cientos de guías paso a paso y talleres de expertos en vivo para acelerar su carrera.
             </p>
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-3 text-lg">
