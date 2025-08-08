@@ -53,6 +53,8 @@ export default function UniversidadGuias() {
       navigate('/universidad/dashboard');
     } else if (itemId === 'courses') {
       navigate('/universidad/cursos');
+    } else if (itemId === 'workshops') {
+      navigate('/universidad/talleres');
     }
   };
 
