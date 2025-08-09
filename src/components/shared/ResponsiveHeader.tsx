@@ -54,9 +54,9 @@ export default function ResponsiveHeader() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user?.user_metadata?.avatar_url} alt={user?.user_metadata?.full_name} />
+            <AvatarImage src={user?.avatar_url} alt={user?.full_name} />
             <AvatarFallback className="bg-primary text-primary-foreground">
-              {getUserInitials(user?.user_metadata?.full_name)}
+              {getUserInitials(user?.full_name)}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -65,7 +65,7 @@ export default function ResponsiveHeader() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {user?.user_metadata?.full_name || user?.email}
+              {user?.full_name || user?.email}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {user?.email}
@@ -230,18 +230,18 @@ export default function ResponsiveHeader() {
                     {loading ? (
                       <div className="w-full h-10 rounded-lg bg-slate-700 animate-pulse" />
                     ) : user ? (
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-slate-800">
-                          <Avatar className="h-8 w-8">
-                            <AvatarImage src={user?.user_metadata?.avatar_url} alt={user?.user_metadata?.full_name} />
-                            <AvatarFallback className="bg-primary text-primary-foreground">
-                              {getUserInitials(user?.user_metadata?.full_name)}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white truncate">
-                              {user?.user_metadata?.full_name || user?.email}
-                            </p>
+                        <div className="space-y-3">
+                          <div className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-slate-800">
+                            <Avatar className="h-8 w-8">
+                              <AvatarImage src={user?.avatar_url} alt={user?.full_name} />
+                              <AvatarFallback className="bg-primary text-primary-foreground">
+                                {getUserInitials(user?.full_name)}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-white truncate">
+                                {user?.full_name || user?.email}
+                              </p>
                             <div className="flex items-center gap-2 mt-1">
                               <Badge variant="secondary" className="text-xs">
                                 <Crown className="w-3 h-3 mr-1" />

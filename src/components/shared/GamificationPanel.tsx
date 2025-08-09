@@ -26,22 +26,29 @@ interface GamificationPanelProps {
 }
 
 export default function GamificationPanel({ userId, isOpen, onClose }: GamificationPanelProps) {
-  const [userStats, setUserStats] = useState(GamificationService.getUserStats(userId));
+  const [userStats, setUserStats] = useState<any>(null);
   const [leaderboardPeriod, setLeaderboardPeriod] = useState<'weekly' | 'monthly' | 'alltime'>('weekly');
-  const [leaderboard, setLeaderboard] = useState(GamificationService.getLeaderboard(leaderboardPeriod));
+  const [leaderboard, setLeaderboard] = useState<any[]>([]);
 
   useEffect(() => {
-    setLeaderboard(GamificationService.getLeaderboard(leaderboardPeriod));
-  }, [leaderboardPeriod]);
+    const fetchData = async () => {
+      const stats = await GamificationService.getUserStats(userId);
+      setUserStats(stats.data);
+      
+      const leaderboardData = await GamificationService.getLeaderboard();
+      setLeaderboard(leaderboardData.data || []);
+    };
+    fetchData();
+  }, [userId, leaderboardPeriod]);
 
-  const currentLevel = GamificationService.calculateLevel(userStats.points);
-  const nextLevel = GamificationService.getNextLevel(currentLevel.level);
-  const progressToNext = nextLevel 
-    ? ((userStats.points - currentLevel.minPoints) / (nextLevel.minPoints - currentLevel.minPoints)) * 100
-    : 100;
+  const currentLevel = userStats ? GamificationService.calculateLevel(userStats.experience) : 1;
+  const nextLevel = GamificationService.getNextLevel(currentLevel);
+  const progressToNext = userStats 
+    ? ((userStats.experience % 1000) / 1000) * 100
+    : 0;
 
-  const expertiseBadges = GamificationService.getExpertiseBadges(userStats);
-  const recentAchievements = userStats.achievements.slice(-3);
+  const expertiseBadges = userStats ? GamificationService.getExpertiseBadges(userStats.level) : [];
+  const recentAchievements = userStats?.achievements?.slice(-3) || [];
 
   const getRarityColor = (rarity: string) => {
     switch (rarity) {
@@ -89,22 +96,20 @@ export default function GamificationPanel({ userId, isOpen, onClose }: Gamificat
               <Card className="bg-neutral-800 border-neutral-700">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-white">
-                    <Star className="w-5 h-5" style={{ color: currentLevel.color }} />
-                    Nivel {currentLevel.level}: {currentLevel.title}
+                    <Star className="w-5 h-5 text-purple-400" />
+                    Nivel {currentLevel}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-sm text-neutral-400">
-                      <span>{userStats.points} puntos</span>
-                      {nextLevel && <span>Próximo nivel: {nextLevel.minPoints} puntos</span>}
+                      <span>{userStats?.experience || 0} XP</span>
+                      <span>Próximo nivel: {nextLevel} XP</span>
                     </div>
                     <Progress value={progressToNext} className="h-3" />
-                    {nextLevel && (
-                      <p className="text-xs text-neutral-500">
-                        Te faltan {nextLevel.minPoints - userStats.points} puntos para {nextLevel.title}
-                      </p>
-                    )}
+                    <p className="text-xs text-neutral-500">
+                      Te faltan {nextLevel - (userStats?.experience || 0)} XP para el siguiente nivel
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -113,26 +118,26 @@ export default function GamificationPanel({ userId, isOpen, onClose }: Gamificat
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card className="bg-neutral-800 border-neutral-700">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-purple-400">{userStats.points}</div>
-                    <div className="text-xs text-neutral-400">Puntos Totales</div>
+                    <div className="text-2xl font-bold text-purple-400">{userStats?.experience || 0}</div>
+                    <div className="text-xs text-neutral-400">Experiencia Total</div>
                   </CardContent>
                 </Card>
                 <Card className="bg-neutral-800 border-neutral-700">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-green-400">{userStats.weeklyPoints}</div>
-                    <div className="text-xs text-neutral-400">Esta Semana</div>
+                    <div className="text-2xl font-bold text-green-400">{userStats?.level || 1}</div>
+                    <div className="text-xs text-neutral-400">Nivel Actual</div>
                   </CardContent>
                 </Card>
                 <Card className="bg-neutral-800 border-neutral-700">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-blue-400">{userStats.messagesCount}</div>
-                    <div className="text-xs text-neutral-400">Mensajes</div>
+                    <div className="text-2xl font-bold text-blue-400">{userStats?.badges?.length || 0}</div>
+                    <div className="text-xs text-neutral-400">Insignias</div>
                   </CardContent>
                 </Card>
                 <Card className="bg-neutral-800 border-neutral-700">
                   <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-yellow-400">{userStats.helpfulAnswers}</div>
-                    <div className="text-xs text-neutral-400">Respuestas Útiles</div>
+                    <div className="text-2xl font-bold text-yellow-400">0</div>
+                    <div className="text-xs text-neutral-400">Logros</div>
                   </CardContent>
                 </Card>
               </div>
@@ -169,35 +174,33 @@ export default function GamificationPanel({ userId, isOpen, onClose }: Gamificat
             <TabsContent value="achievements" className="mt-6">
               <ScrollArea className="h-[500px] pr-4">
                 <div className="grid gap-4">
-                  {GamificationService.ACHIEVEMENTS.map((achievement) => {
-                    const isUnlocked = userStats.achievements.some(a => a.id === achievement.id);
-                    const userAchievement = userStats.achievements.find(a => a.id === achievement.id);
+                  {Object.entries(GamificationService.ACHIEVEMENTS).map(([key, achievementId]) => {
+                    const isUnlocked = userStats?.achievements?.some((a: any) => a.id === achievementId) || false;
+                    const userAchievement = userStats?.achievements?.find((a: any) => a.id === achievementId);
+                    
+                    const achievement = {
+                      id: achievementId,
+                      name: key.replace(/_/g, ' ').toLowerCase(),
+                      description: `Logro: ${key}`,
+                      icon: '🏆',
+                      rarity: 'common',
+                      points: 100
+                    };
                     
                     return (
-                      <Card key={achievement.id} className={`bg-neutral-800 border-2 ${getRarityColor(achievement.rarity)} ${!isUnlocked ? 'opacity-60' : ''}`}>
+                      <Card key={achievementId} className={`bg-neutral-800 border-2 ${getRarityColor(achievement.rarity)} ${!isUnlocked ? 'opacity-60' : ''}`}>
                         <CardContent className="p-4">
                           <div className="flex items-center gap-4">
                             <div className="text-3xl">{achievement.icon}</div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2">
-                                <h3 className="font-semibold text-white">{achievement.name}</h3>
+                                <h3 className="font-semibold text-white capitalize">{achievement.name}</h3>
                                 {isUnlocked && <Medal className="w-4 h-4 text-yellow-400" />}
                                 <Badge variant="outline" className={`text-xs capitalize ${getRarityColor(achievement.rarity)}`}>
                                   {achievement.rarity}
                                 </Badge>
                               </div>
                               <p className="text-sm text-neutral-400 mt-1">{achievement.description}</p>
-                              {achievement.maxProgress && achievement.maxProgress > 1 && (
-                                <div className="mt-2">
-                                  <Progress 
-                                    value={isUnlocked ? 100 : 0} 
-                                    className="h-2" 
-                                  />
-                                  <div className="text-xs text-neutral-500 mt-1">
-                                    {isUnlocked ? achievement.maxProgress : 0} / {achievement.maxProgress}
-                                  </div>
-                                </div>
-                              )}
                             </div>
                             <div className="text-right">
                               <div className="text-lg font-bold text-purple-400">+{achievement.points}</div>
@@ -305,24 +308,24 @@ export default function GamificationPanel({ userId, isOpen, onClose }: Gamificat
                     Insignias de Experiencia
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {expertiseBadges.map((badge) => (
-                      <Card key={badge.id} className="bg-neutral-800 border-neutral-700">
+                    {expertiseBadges.map((badge, index) => (
+                      <Card key={index} className="bg-neutral-800 border-neutral-700">
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
-                            <div className={`w-12 h-12 rounded-full ${badge.color} flex items-center justify-center text-xl`}>
-                              {badge.icon}
+                            <div className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-xl">
+                              🏆
                             </div>
                             <div className="flex-1">
-                              <div className="font-semibold text-white">{badge.name}</div>
-                              <div className="text-sm text-neutral-400">{badge.expertise}</div>
+                              <div className="font-semibold text-white">{badge}</div>
+                              <div className="text-sm text-neutral-400">Insignia de experiencia</div>
                               <div className="flex items-center gap-1 mt-2">
                                 {[...Array(5)].map((_, i) => (
                                   <Star 
                                     key={i} 
-                                    className={`w-3 h-3 ${i < badge.level ? 'text-yellow-400 fill-current' : 'text-neutral-600'}`} 
+                                    className="w-3 h-3 text-yellow-400 fill-current" 
                                   />
                                 ))}
-                                <span className="text-xs text-neutral-500 ml-1">Nivel {badge.level}</span>
+                                <span className="text-xs text-neutral-500 ml-1">Nivel 5</span>
                               </div>
                             </div>
                           </div>
